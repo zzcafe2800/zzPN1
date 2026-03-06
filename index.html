@@ -6,37 +6,19 @@
   <title>Photo Event</title>
   <style>
     :root{
-      --bg:#0b0f14;
-      --panel:#131923;
-      --panel2:#171f2b;
-      --line:#283244;
-      --line2:#314158;
-      --text:#f5f8fd;
-      --muted:#a3aec0;
-      --soft:#dce9fb;
-      --blue:#8ec6ff;
-      --blue2:#6fb2ff;
-      --mint:#89ecd3;
-      --mint2:#59d8b3;
-      --yellow:#ffd67d;
-      --pink:#f6a8d7;
-      --pink2:#ea78bf;
-      --danger:#ff9898;
-      --shadow:0 16px 40px rgba(0,0,0,.34);
-      --safe: max(12px, env(safe-area-inset-top));
-      --safeB: max(12px, env(safe-area-inset-bottom));
-      --topH:196px;
-      --font: Inter, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
+      --bg:#0b0f14; --panel:#131923; --panel2:#171f2b; --line:#283244; --line2:#314158;
+      --text:#f5f8fd; --muted:#a3aec0; --soft:#dce9fb;
+      --blue:#8ec6ff; --blue2:#6fb2ff; --mint:#89ecd3; --mint2:#59d8b3;
+      --yellow:#ffd67d; --pink:#f6a8d7; --pink2:#ea78bf; --danger:#ff9898; --red:#ff7c7c; --red2:#eb5050;
+      --shadow:0 16px 40px rgba(0,0,0,.34); --safe:max(12px, env(safe-area-inset-top)); --safeB:max(12px, env(safe-area-inset-bottom));
+      --topH:164px; --font: Inter, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
     }
     *{box-sizing:border-box}
     html,body{margin:0;background:linear-gradient(180deg,#0a0e14,#101723);color:var(--text);font-family:var(--font)}
-    button,input,select{font:inherit}
-    button{cursor:pointer;border:none}
-    input,select{outline:none}
-    a{color:inherit}
-    .app{max-width:1260px;margin:0 auto;padding:calc(var(--topH) + var(--safe) + 12px) 14px calc(110px + var(--safeB));min-height:100vh}
+    button,input,select{font:inherit} button{cursor:pointer;border:none} input,select{outline:none}
+    .app{max-width:1260px;margin:0 auto;padding:calc(var(--topH) + var(--safe) + 22px) 14px calc(110px + var(--safeB));min-height:100vh}
 
-    .topbar{position:fixed;inset:0 0 auto 0;z-index:90;background:rgba(9,12,18,.82);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow)}
+    .topbar{position:fixed;inset:0 0 auto 0;z-index:90;background:rgba(9,12,18,.84);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow)}
     .topbar-inner{max-width:1260px;margin:0 auto;padding:calc(10px + var(--safe)) 14px 12px}
     .status-strip{display:grid;gap:10px;background:linear-gradient(180deg,#151d2a,#101721);border:1px solid var(--line);border-radius:22px;padding:12px}
     .status-main{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center}
@@ -46,109 +28,53 @@
     .meta-pill{padding:7px 10px;border-radius:999px;background:#1e2938;border:1px solid #314158;color:var(--soft);font-size:12px;font-weight:800}
     .top-btn{min-width:86px;height:46px;border-radius:999px;padding:0 16px;background:#22324a;border:1px solid #39557a;color:#fff;font-weight:900}
     .top-btn.primary{background:linear-gradient(180deg,var(--blue),var(--blue2));color:#061420;border-color:#83c0ff}
-
     .flow-line{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-    .flow-step{min-height:70px;padding:10px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);opacity:.54;transform:scale(.985);transition:.18s ease}
+    .flow-step{min-height:68px;padding:10px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);opacity:.54;transform:scale(.985);transition:.18s ease}
     .flow-step.active{opacity:1;transform:none;border-color:#79bcff;background:linear-gradient(180deg,rgba(121,188,255,.18),rgba(137,236,211,.08));box-shadow:0 0 0 1px rgba(121,188,255,.18) inset}
     .flow-step.done{opacity:.72}
-    .flow-mini{font-size:11px;color:var(--muted);font-weight:800}
-    .flow-step.active .flow-mini{color:#def0ff}
-    .flow-name{font-size:15px;font-weight:900;margin-top:3px}
-    .flow-sub{font-size:12px;color:var(--muted);margin-top:2px}
+    .flow-mini{font-size:11px;color:var(--muted);font-weight:800}.flow-step.active .flow-mini{color:#def0ff}.flow-name{font-size:15px;font-weight:900;margin-top:3px}.flow-sub{font-size:12px;color:var(--muted);margin-top:2px}
 
-    .layout{display:grid;grid-template-columns:1.04fr .96fr;gap:14px}
+    .layout{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
     .panel{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:22px;padding:14px;box-shadow:var(--shadow)}
-    .section-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
-    .section-title{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:900;color:#d9e5f7}
-    .section-mini{font-size:12px;color:var(--muted);font-weight:700}
+    .section-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.section-title{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:900;color:#d9e5f7}.section-mini{font-size:12px;color:var(--muted);font-weight:700}
+    .queue-list,.stack,.goal-list,.vote-list,.forced-list{display:grid;gap:10px}
 
-    .queue-list,.stack,.goal-list,.vote-list{display:grid;gap:10px}
     .photo-card{background:rgba(255,255,255,.03);border:1px solid #283244;border-radius:18px;padding:12px;display:grid;gap:8px}
     .photo-card.current{border-color:#73b9ff;background:linear-gradient(180deg,rgba(115,185,255,.17),rgba(255,255,255,.03))}
     .photo-card.vote-card{border-color:#9267ff;background:linear-gradient(180deg,rgba(146,103,255,.13),rgba(255,255,255,.03))}
-    .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-    .card-title{font-size:18px;font-weight:900;line-height:1.2}
-    .card-sub{font-size:12px;color:var(--muted);margin-top:3px}
-    .kind{padding:6px 9px;border-radius:999px;background:#1e2938;border:1px solid var(--line2);font-size:11px;font-weight:900;color:#e2edfb;white-space:nowrap}
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{padding:6px 10px;border-radius:999px;background:#1e2938;border:1px solid var(--line2);font-size:12px;font-weight:800;color:#e3edf8}
-    .actions{display:flex;flex-wrap:wrap;gap:8px}
+    .photo-card.pick-card{border-color:#8a3743;background:linear-gradient(180deg,rgba(235,80,80,.16),rgba(255,255,255,.03))}
+    .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.card-title{font-size:18px;font-weight:900;line-height:1.2}.card-sub{font-size:12px;color:var(--muted);margin-top:3px}.kind{padding:6px 9px;border-radius:999px;background:#1e2938;border:1px solid var(--line2);font-size:11px;font-weight:900;color:#e2edfb;white-space:nowrap}
+    .chips,.actions{display:flex;flex-wrap:wrap;gap:8px}.chip{padding:6px 10px;border-radius:999px;background:#1e2938;border:1px solid var(--line2);font-size:12px;font-weight:800;color:#e3edf8}
     .btn{height:40px;padding:0 14px;border-radius:999px;background:#202a39;border:1px solid var(--line2);color:#fff;font-weight:900}
-    .btn.primary{background:linear-gradient(180deg,var(--blue),var(--blue2));color:#061420;border-color:#83c0ff}
-    .btn.ok{background:linear-gradient(180deg,var(--mint),var(--mint2));color:#061420;border-color:#7de5cf}
-    .btn.warn{background:linear-gradient(180deg,#ffe09b,var(--yellow));color:#2a1f00;border-color:#ffd57d}
-    .btn.pink{background:linear-gradient(180deg,var(--pink),var(--pink2));color:#220914;border-color:#f2a8d3}
-    .btn.danger{background:linear-gradient(180deg,#ffb0b0,var(--danger));color:#250606;border-color:#ffadad}
-    .btn.ghost{background:transparent}
-    .btn:disabled{opacity:.45;cursor:default}
+    .btn.primary{background:linear-gradient(180deg,var(--blue),var(--blue2));color:#061420;border-color:#83c0ff}.btn.ok{background:linear-gradient(180deg,var(--mint),var(--mint2));color:#061420;border-color:#7de5cf}.btn.warn{background:linear-gradient(180deg,#ffe09b,var(--yellow));color:#2a1f00;border-color:#ffd57d}.btn.pink{background:linear-gradient(180deg,var(--pink),var(--pink2));color:#220914;border-color:#f2a8d3}.btn.danger{background:linear-gradient(180deg,#ffb0b0,var(--danger));color:#250606;border-color:#ffadad}.btn.push{background:linear-gradient(180deg,var(--red),var(--red2));color:#fff;border-color:#ff9e9e}.btn:disabled{opacity:.45;cursor:default}
     .empty{padding:20px;border-radius:18px;border:1px dashed var(--line2);text-align:center;color:var(--muted)}
-
-    .side{display:grid;gap:14px}
-    .people{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-    .person{display:flex;align-items:center;gap:10px;padding:10px;border-radius:16px;border:1px solid #283244;background:rgba(255,255,255,.03)}
-    .person-icon{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#1f2937;border:1px solid var(--line2);font-size:18px;flex:none}
-    .person-name{font-weight:900;line-height:1.12}
-    .person-sub{font-size:12px;color:var(--muted);margin-top:2px}
-
-    .goal-card{padding:12px;border-radius:18px;border:1px solid #355172;background:linear-gradient(180deg,rgba(120,190,255,.16),rgba(255,255,255,.03))}
-    .goal-title{font-weight:900}
-    .goal-sub{font-size:12px;color:var(--soft);margin-top:5px;line-height:1.5}
-    .vote-count{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 12px;border-radius:999px;background:#27203e;border:1px solid #54457e;color:#efe7ff;font-weight:900}
-
-    .fixed-actions{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + var(--safeB));z-index:80;width:min(1260px,calc(100% - 28px));display:flex;justify-content:flex-end;gap:10px;pointer-events:none}
-    .fixed-actions > *{pointer-events:auto}
-    .fab{height:56px;padding:0 18px;border-radius:999px;font-weight:900;box-shadow:var(--shadow)}
-    .fab.state{background:linear-gradient(180deg,var(--mint),var(--mint2));color:#061420}
-    .fab.leader{background:linear-gradient(180deg,var(--blue),var(--blue2));color:#061420}
-
-    .admin-dot{position:fixed;left:14px;bottom:calc(14px + var(--safeB));z-index:85;width:16px;height:16px;border-radius:50%;background:#dce6f6;opacity:.55;box-shadow:0 0 0 1px rgba(255,255,255,.18) inset, 0 4px 14px rgba(0,0,0,.3)}
-    .admin-dot:hover{opacity:.95}
-
-    .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center;z-index:120;padding:16px}
-    .modal.show{display:flex}
-    .sheet{width:min(860px,100%);max-height:min(88vh,960px);overflow:auto;background:linear-gradient(180deg,#161d29,#111722);border:1px solid #2b3649;border-radius:24px;padding:14px;box-shadow:var(--shadow)}
-    .sheet-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
-    .sheet-title{font-size:20px;font-weight:900}
-    .close{width:40px;height:40px;border-radius:50%;background:#1e2635;border:1px solid var(--line2);color:#fff}
-
-    .name-row{display:grid;grid-template-columns:1fr auto;gap:10px}
-    .input,.select{width:100%;height:46px;border-radius:14px;border:1px solid var(--line2);background:#121825;color:#fff;padding:0 12px}
-    .field{display:grid;gap:7px}
-    .label{font-size:11px;color:var(--muted);font-weight:900;letter-spacing:.08em;text-transform:uppercase}
-    .form{display:grid;gap:12px}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .pick{padding:14px;border-radius:18px;border:1px solid var(--line2);background:rgba(255,255,255,.03);text-align:left}
-    .pick.on{border-color:#78beff;background:rgba(120,190,255,.12)}
-    .pick-title{font-size:18px;font-weight:900;margin-top:4px}
-
-    .sample-list{display:grid;gap:10px}
-    .sample{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;padding:10px;border-radius:18px;border:1px solid var(--line2);background:rgba(255,255,255,.03)}
+    .side{display:grid;gap:14px}.people{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.person{display:flex;align-items:center;gap:10px;padding:10px;border-radius:16px;border:1px solid #283244;background:rgba(255,255,255,.03)}.person-icon{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#1f2937;border:1px solid var(--line2);font-size:18px;flex:none}.person-name{font-weight:900;line-height:1.12}.person-sub{font-size:12px;color:var(--muted);margin-top:2px}
+    .goal-card{padding:12px;border-radius:18px;border:1px solid #355172;background:linear-gradient(180deg,rgba(120,190,255,.16),rgba(255,255,255,.03))}.goal-title{font-weight:900}.goal-sub{font-size:12px;color:var(--soft);margin-top:5px;line-height:1.5}.vote-count{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 12px;border-radius:999px;background:#27203e;border:1px solid #54457e;color:#efe7ff;font-weight:900}
     .thumb{height:78px;border-radius:14px;background-size:cover;background-position:center;border:1px solid var(--line2);background-color:#1a2230}
-    .sample-title{font-weight:900}
-    .sample-sub{font-size:12px;color:var(--muted);margin-top:3px}
+    .fixed-actions{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + var(--safeB));z-index:80;width:min(1260px,calc(100% - 28px));display:flex;justify-content:flex-end;gap:10px;pointer-events:none}.fixed-actions>*{pointer-events:auto}.fab{height:56px;padding:0 18px;border-radius:999px;font-weight:900;box-shadow:var(--shadow)}.fab.state{background:linear-gradient(180deg,var(--mint),var(--mint2));color:#061420}.fab.leader{background:linear-gradient(180deg,var(--blue),var(--blue2));color:#061420}
+    .admin-dot{position:fixed;left:14px;bottom:calc(14px + var(--safeB));z-index:85;width:16px;height:16px;border-radius:50%;background:#dce6f6;opacity:.55;box-shadow:0 0 0 1px rgba(255,255,255,.18) inset, 0 4px 14px rgba(0,0,0,.3)}.admin-dot:hover{opacity:.95}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center;z-index:120;padding:16px}.modal.show{display:flex}.sheet{width:min(860px,100%);max-height:min(88vh,960px);overflow:auto;background:linear-gradient(180deg,#161d29,#111722);border:1px solid #2b3649;border-radius:24px;padding:14px;box-shadow:var(--shadow)}.sheet-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.sheet-title{font-size:20px;font-weight:900}.close{width:40px;height:40px;border-radius:50%;background:#1e2635;border:1px solid var(--line2);color:#fff}
+    .name-row{display:grid;grid-template-columns:1fr auto;gap:10px}.input,.select{width:100%;height:46px;border-radius:14px;border:1px solid var(--line2);background:#121825;color:#fff;padding:0 12px}.field{display:grid;gap:7px}.label{font-size:11px;color:var(--muted);font-weight:900;letter-spacing:.08em;text-transform:uppercase}.form{display:grid;gap:12px}.row,.split,.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admin-grid.three{grid-template-columns:repeat(3,1fr)}
+    .pick{padding:14px;border-radius:18px;border:1px solid var(--line2);background:rgba(255,255,255,.03);text-align:left}.pick.on{border-color:#78beff;background:rgba(120,190,255,.12)}.pick-title{font-size:18px;font-weight:900;margin-top:4px}
+    .sample-list{display:grid;gap:10px}.sample{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;padding:10px;border-radius:18px;border:1px solid var(--line2);background:rgba(255,255,255,.03)}
+    .toggle-grid{display:grid;gap:10px}.group{display:grid;gap:8px}.chip-btn{min-height:38px;padding:8px 12px;border-radius:999px;border:1px solid var(--line2);background:#1d2736;color:#dce6f6;font-weight:900}.chip-btn.on{background:rgba(120,190,255,.14);border-color:#78beff;color:#f6fbff}
 
-    .toggle-grid{display:grid;gap:10px}
-    .group{display:grid;gap:8px}
-    .chip-btn{min-height:38px;padding:8px 12px;border-radius:999px;border:1px solid var(--line2);background:#1d2736;color:#dce6f6;font-weight:900}
-    .chip-btn.on{background:rgba(120,190,255,.14);border-color:#78beff;color:#f6fbff}
-    .admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    body.phase-brainstorm #votePanel{display:none}
+    body.phase-brainstorm #mainTitle::after{content:' お題を考える';color:var(--muted)}
+    body.phase-brainstorm .photo-card:not(.current) .btn.push{display:none}
+    body.phase-vote #mainTitle::after{content:' 推し投票';color:var(--muted)}
+    body.phase-shoot #mainTitle::after{content:' 撮影';color:var(--muted)}
+    body.phase-break #mainTitle::after{content:' 休憩';color:var(--muted)}
 
     @media (max-width:940px){
-      :root{--topH:246px}
-      .app{padding-top:calc(var(--topH) + var(--safe) + 14px)}
-      .layout{grid-template-columns:1fr}
-      .status-main{grid-template-columns:1fr 1fr;align-items:start}
-      .status-main > .now-block{grid-column:1/-1}
-      .flow-line{grid-template-columns:1fr}
-      .people{grid-template-columns:1fr}
-      .row,.split,.sample,.name-row,.admin-grid{grid-template-columns:1fr}
-      .sample{align-items:start}
+      :root{--topH:220px}
+      .app{padding-top:calc(var(--topH) + var(--safe) + 22px)}
+      .layout{grid-template-columns:1fr}.status-main{grid-template-columns:1fr 1fr;align-items:start}.status-main>.now-block{grid-column:1/-1}
+      .flow-line,.row,.split,.sample,.name-row,.admin-grid,.admin-grid.three{grid-template-columns:1fr}.people{grid-template-columns:1fr}.sample{align-items:start}
     }
   </style>
 </head>
-<body>
+<body class="phase-brainstorm">
   <div class="topbar">
     <div class="topbar-inner">
       <div class="status-strip">
@@ -170,204 +96,64 @@
     <div class="layout">
       <section class="panel">
         <div class="section-top">
-          <div class="section-title">今やってるフォト</div>
+          <div class="section-title" id="mainTitle">今の一覧</div>
           <div class="section-mini" id="eventMini"></div>
+        </div>
+        <div id="forcedWrap" style="display:none;margin-bottom:10px">
+          <div class="section-mini" style="margin-bottom:8px">運営の上固定</div>
+          <div id="forcedList" class="forced-list"></div>
         </div>
         <div id="queueList" class="queue-list"></div>
       </section>
 
       <div class="side">
-        <section class="panel">
+        <section class="panel" id="votePanel">
           <div class="section-top">
             <div class="section-title">投票</div>
-            <div class="section-mini">投票フェーズのみ有効</div>
+            <div class="section-mini">推しボタン</div>
           </div>
           <div id="voteList" class="vote-list"></div>
         </section>
 
         <section class="panel">
-          <div class="section-top">
-            <div class="section-title">参加者</div>
-            <div class="section-mini">記号で状態表示</div>
-          </div>
+          <div class="section-top"><div class="section-title">参加者</div><div class="section-mini">記号で状態表示</div></div>
           <div id="peopleList" class="people"></div>
         </section>
 
         <section class="panel">
-          <div class="section-top">
-            <div class="section-title">次のフォト</div>
-            <div class="section-mini">キュー上位3件</div>
-          </div>
+          <div class="section-top"><div class="section-title">次のフォト</div><div class="section-mini">同じマップ内</div></div>
           <div id="nextList" class="stack"></div>
         </section>
 
         <section class="panel">
-          <div class="section-top">
-            <div class="section-title">今日の目標</div>
-            <div class="section-mini">SNS投稿は任意</div>
-          </div>
+          <div class="section-top"><div class="section-title">今日の目標</div><div class="section-mini">SNS投稿は任意</div></div>
           <div id="goalList" class="goal-list"></div>
         </section>
       </div>
     </div>
   </main>
 
-  <div class="fixed-actions">
-    <button class="fab state" id="statusFab">状態</button>
-    <button class="fab leader" id="leaderFab">新しいフォト</button>
-  </div>
-
+  <div class="fixed-actions"><button class="fab state" id="statusFab">状態</button><button class="fab leader" id="leaderFab">新しいフォト</button></div>
   <button class="admin-dot" id="adminDot" aria-label="admin"></button>
 
-  <div class="modal" id="detailModal">
-    <div class="sheet">
-      <div class="sheet-head">
-        <div class="sheet-title">現在のフォト</div>
-        <button class="close" data-close="detailModal">×</button>
-      </div>
-      <div id="detailBody"></div>
-    </div>
-  </div>
-
-  <div class="modal" id="statusModal">
-    <div class="sheet">
-      <div class="sheet-head">
-        <div class="sheet-title">状態</div>
-        <button class="close" data-close="statusModal">×</button>
-      </div>
-      <div class="form">
-        <div class="field">
-          <div class="label">名前</div>
-          <div class="name-row">
-            <input class="input" id="nameInput" maxlength="16" placeholder="名前" />
-            <button class="btn" id="saveNameBtn">保存</button>
-          </div>
-        </div>
-        <div class="field">
-          <div class="label">状態</div>
-          <div class="chips" id="statusChips"></div>
-        </div>
-        <button class="btn primary" id="saveStatusBtn">更新</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="leaderModal">
-    <div class="sheet">
-      <div class="sheet-head">
-        <div class="sheet-title">新しいフォト</div>
-        <button class="close" data-close="leaderModal">×</button>
-      </div>
-      <div class="form">
-        <div class="split">
-          <button class="pick on" id="typeSample">
-            <div class="label">タイプ</div>
-            <div class="pick-title">選択</div>
-          </button>
-          <button class="pick" id="typeOriginal">
-            <div class="label">タイプ</div>
-            <div class="pick-title">オリジナル</div>
-          </button>
-        </div>
-        <div id="sampleArea"><div class="sample-list" id="sampleList"></div></div>
-        <div id="originalArea" style="display:none">
-          <div class="form">
-            <div class="field"><div class="label">タイトル</div><input class="input" id="titleInput" maxlength="26" placeholder="短く" /></div>
-            <div class="row">
-              <div class="field"><div class="label">撮る場所</div><select class="select" id="mapSelect"></select></div>
-              <div class="field"><div class="label">細かい指定</div><select class="select" id="detailSelect"><option value="none">なし</option><option value="yes">あり</option></select></div>
-            </div>
-            <div id="templateArea" class="toggle-grid" style="display:none">
-              <div class="group"><div class="label">カメラ</div><div class="chips" data-group="camera"></div></div>
-              <div class="group"><div class="label">雰囲気</div><div class="chips" data-group="mood"></div></div>
-              <div class="group"><div class="label">人数</div><div class="chips" data-group="size"></div></div>
-              <div class="group"><div class="label">+1人来たら</div><div class="chips" data-group="plusOne"></div></div>
-            </div>
-            <button class="btn primary" id="addOriginalBtn">キューに入れる</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="adminModal">
-    <div class="sheet">
-      <div class="sheet-head">
-        <div class="sheet-title">運営モード</div>
-        <button class="close" data-close="adminModal">×</button>
-      </div>
-      <div class="form">
-        <div class="field">
-          <div class="label">パスワード</div>
-          <div class="name-row">
-            <input class="input" id="adminPassInput" type="password" maxlength="8" placeholder="0505" />
-            <button class="btn" id="unlockAdminBtn">開く</button>
-          </div>
-        </div>
-        <div id="adminBody" style="display:none">
-          <div class="field">
-            <div class="label">フェイズ移動</div>
-            <div class="admin-grid">
-              <button class="btn warn" data-admin-phase="brainstorm">お題考え</button>
-              <button class="btn pink" data-admin-phase="vote">投票</button>
-              <button class="btn ok" data-admin-phase="shoot">撮影</button>
-            </div>
-          </div>
-          <div class="field">
-            <div class="label">マップ移動</div>
-            <div class="admin-grid">
-              <button class="btn" data-admin-map="bridge">歩道橋</button>
-              <button class="btn" data-admin-map="spots">3スポット</button>
-              <button class="btn" data-admin-map="pool">プール</button>
-            </div>
-          </div>
-          <div class="field">
-            <div class="label">補助</div>
-            <div class="actions">
-              <button class="btn primary" id="adminNextCycleBtn">次のマップへ</button>
-              <button class="btn danger" id="adminBreakBtn">5分休憩にする</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="modal" id="detailModal"><div class="sheet"><div class="sheet-head"><div class="sheet-title">現在のフォト</div><button class="close" data-close="detailModal">×</button></div><div id="detailBody"></div></div></div>
+  <div class="modal" id="statusModal"><div class="sheet"><div class="sheet-head"><div class="sheet-title">状態</div><button class="close" data-close="statusModal">×</button></div><div class="form"><div class="field"><div class="label">名前</div><div class="name-row"><input class="input" id="nameInput" maxlength="16" placeholder="名前" /><button class="btn" id="saveNameBtn">保存</button></div></div><div class="field"><div class="label">状態</div><div class="chips" id="statusChips"></div></div><button class="btn primary" id="saveStatusBtn">更新</button></div></div></div>
+  <div class="modal" id="leaderModal"><div class="sheet"><div class="sheet-head"><div class="sheet-title">新しいフォト</div><button class="close" data-close="leaderModal">×</button></div><div class="form"><div class="split"><button class="pick on" id="typeSample"><div class="label">タイプ</div><div class="pick-title">選択</div></button><button class="pick" id="typeOriginal"><div class="label">タイプ</div><div class="pick-title">オリジナル</div></button></div><div id="sampleArea"><div class="sample-list" id="sampleList"></div></div><div id="originalArea" style="display:none"><div class="form"><div class="field"><div class="label">タイトル</div><input class="input" id="titleInput" maxlength="26" placeholder="短く" /></div><div class="row"><div class="field"><div class="label">撮る場所</div><select class="select" id="mapSelect"></select></div><div class="field"><div class="label">細かい指定</div><select class="select" id="detailSelect"><option value="none">なし</option><option value="yes">あり</option></select></div></div><div id="templateArea" class="toggle-grid" style="display:none"><div class="group"><div class="label">カメラ</div><div class="chips" data-group="camera"></div></div><div class="group"><div class="label">雰囲気</div><div class="chips" data-group="mood"></div></div><div class="group"><div class="label">人数</div><div class="chips" data-group="size"></div></div><div class="group"><div class="label">+1人来たら</div><div class="chips" data-group="plusOne"></div></div></div><button class="btn primary" id="addOriginalBtn">キューに入れる</button></div></div></div></div></div>
+  <div class="modal" id="adminModal"><div class="sheet"><div class="sheet-head"><div class="sheet-title">運営モード</div><button class="close" data-close="adminModal">×</button></div><div class="form"><div class="field"><div class="label">パスワード</div><div class="name-row"><input class="input" id="adminPassInput" type="password" maxlength="8" placeholder="0505" /><button class="btn" id="unlockAdminBtn">開く</button></div></div><div id="adminBody" style="display:none"><div class="field"><div class="label">フェイズ移動</div><div class="admin-grid three"><button class="btn warn" data-admin-phase="brainstorm">お題考え</button><button class="btn pink" data-admin-phase="vote">投票</button><button class="btn ok" data-admin-phase="shoot">撮影</button></div></div><div class="field"><div class="label">マップ移動</div><div class="admin-grid three"><button class="btn" data-admin-map="bridge">歩道橋</button><button class="btn" data-admin-map="spots">3スポット</button><button class="btn" data-admin-map="pool">プール</button></div></div><div class="field"><div class="label">強制上表示</div><div class="actions"><button class="btn push" id="pinCurrentBtn">今のカードを上固定</button><button class="btn danger" id="clearPinsBtn">固定解除</button></div></div></div></div></div></div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
     import { getDatabase, ref, set, get, update, push, onValue, serverTimestamp, remove, runTransaction } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBePhUfYinZ02-1BWbZvzV3IBwoAYh-kxE",
-      authDomain: "suisougaku-bdcc0.firebaseapp.com",
-      databaseURL: "https://suisougaku-bdcc0-default-rtdb.firebaseio.com",
-      projectId: "suisougaku-bdcc0",
-      storageBucket: "suisougaku-bdcc0.firebasestorage.app",
-      messagingSenderId: "636001978886",
-      appId: "1:636001978886:web:24e68f1ef5b66dc7fa5187",
-      measurementId: "G-Y04PFJ9BQ6"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    try { getAnalytics(app); } catch {}
-    const db = getDatabase(app);
-
+    const firebaseConfig = { apiKey:"AIzaSyBePhUfYinZ02-1BWbZvzV3IBwoAYh-kxE", authDomain:"suisougaku-bdcc0.firebaseapp.com", databaseURL:"https://suisougaku-bdcc0-default-rtdb.firebaseio.com", projectId:"suisougaku-bdcc0", storageBucket:"suisougaku-bdcc0.firebasestorage.app", messagingSenderId:"636001978886", appId:"1:636001978886:web:24e68f1ef5b66dc7fa5187", measurementId:"G-Y04PFJ9BQ6" };
+    const app = initializeApp(firebaseConfig); try{ getAnalytics(app);}catch{} const db=getDatabase(app);
     const params = new URLSearchParams(location.search);
     const EVENT_ID = (params.get("event") || "default_event").replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 40) || "default_event";
     const ADMIN_PASSWORD = "0505";
-
-    const MAPS = [
-      { id:"bridge", name:"歩道橋", minutes:15 },
-      { id:"spots", name:"3スポット", minutes:20 },
-      { id:"pool", name:"プール", minutes:25 }
-    ];
+    const MAPS = [{id:"bridge",name:"歩道橋"},{id:"spots",name:"3スポット"},{id:"pool",name:"プール"}];
     const MAP_ORDER = ["bridge","spots","pool"];
-    const FLOW = [
-      { id:"brainstorm", name:"お題考えタイム", time:"お題" },
-      { id:"vote", name:"投票", time:"投票" },
-      { id:"shoot", name:"撮影", time:"撮影" }
-    ];
+    const FLOW = [{id:"brainstorm",name:"お題考えタイム",time:"お題"},{id:"vote",name:"投票",time:"投票"},{id:"shoot",name:"撮影",time:"撮影"}];
     const BREAK_FLOW = { id:"break", name:"5分以上のんびり", time:"5分休憩", durationMs:5*60*1000 };
     const SAMPLE_PHOTOS = [
       { title:"歩道橋・集合写真", map:"bridge", camera:"目線", mood:"わちゃ", size:"4〜5", plusOne:"後ろで小さく入る", image:"https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=500&q=80" },
@@ -375,133 +161,89 @@
       { title:"プール・俯瞰で広め", map:"pool", camera:"俯瞰", mood:"かっこよく", size:"何人でも", plusOne:"後ろで小さく入る", image:"https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=500&q=80" }
     ];
     const TEMPLATES = { camera:["低め","目線","俯瞰"], mood:["エモ","わちゃ","かっこよく"], size:["2〜3","4〜5","何人でも"], plusOne:["前に座る","後ろで小さく入る"] };
-    const STATUS_OPTIONS = [
-      { id:"shooting", icon:"📷", label:"撮影中" },
-      { id:"editing", icon:"✨", label:"加工中" },
-      { id:"chill", icon:"☁️", label:"のんびり中" }
-    ];
+    const STATUS_OPTIONS = [{id:"shooting",icon:"📷",label:"撮影中"},{id:"editing",icon:"✨",label:"加工中"},{id:"chill",icon:"☁️",label:"のんびり中"}];
 
     const els = {
-      currentTitle: document.getElementById("currentTitle"), currentMeta: document.getElementById("currentMeta"), flowLine: document.getElementById("flowLine"), eventMini: document.getElementById("eventMini"), queueList: document.getElementById("queueList"), voteList: document.getElementById("voteList"), peopleList: document.getElementById("peopleList"), nextList: document.getElementById("nextList"), goalList: document.getElementById("goalList"), detailBtn: document.getElementById("detailBtn"), joinBtn: document.getElementById("joinBtn"), detailModal: document.getElementById("detailModal"), detailBody: document.getElementById("detailBody"), statusModal: document.getElementById("statusModal"), nameInput: document.getElementById("nameInput"), saveNameBtn: document.getElementById("saveNameBtn"), statusFab: document.getElementById("statusFab"), statusChips: document.getElementById("statusChips"), saveStatusBtn: document.getElementById("saveStatusBtn"), leaderFab: document.getElementById("leaderFab"), leaderModal: document.getElementById("leaderModal"), typeSample: document.getElementById("typeSample"), typeOriginal: document.getElementById("typeOriginal"), sampleArea: document.getElementById("sampleArea"), originalArea: document.getElementById("originalArea"), sampleList: document.getElementById("sampleList"), titleInput: document.getElementById("titleInput"), mapSelect: document.getElementById("mapSelect"), detailSelect: document.getElementById("detailSelect"), templateArea: document.getElementById("templateArea"), addOriginalBtn: document.getElementById("addOriginalBtn"), adminDot: document.getElementById("adminDot"), adminModal: document.getElementById("adminModal"), adminPassInput: document.getElementById("adminPassInput"), unlockAdminBtn: document.getElementById("unlockAdminBtn"), adminBody: document.getElementById("adminBody"), adminNextCycleBtn: document.getElementById("adminNextCycleBtn"), adminBreakBtn: document.getElementById("adminBreakBtn") };
+      currentTitle:document.getElementById("currentTitle"), currentMeta:document.getElementById("currentMeta"), flowLine:document.getElementById("flowLine"), eventMini:document.getElementById("eventMini"), queueList:document.getElementById("queueList"), voteList:document.getElementById("voteList"), peopleList:document.getElementById("peopleList"), nextList:document.getElementById("nextList"), goalList:document.getElementById("goalList"), forcedWrap:document.getElementById("forcedWrap"), forcedList:document.getElementById("forcedList"), detailBtn:document.getElementById("detailBtn"), joinBtn:document.getElementById("joinBtn"), detailModal:document.getElementById("detailModal"), detailBody:document.getElementById("detailBody"), statusModal:document.getElementById("statusModal"), nameInput:document.getElementById("nameInput"), saveNameBtn:document.getElementById("saveNameBtn"), statusFab:document.getElementById("statusFab"), statusChips:document.getElementById("statusChips"), saveStatusBtn:document.getElementById("saveStatusBtn"), leaderFab:document.getElementById("leaderFab"), leaderModal:document.getElementById("leaderModal"), typeSample:document.getElementById("typeSample"), typeOriginal:document.getElementById("typeOriginal"), sampleArea:document.getElementById("sampleArea"), originalArea:document.getElementById("originalArea"), sampleList:document.getElementById("sampleList"), titleInput:document.getElementById("titleInput"), mapSelect:document.getElementById("mapSelect"), detailSelect:document.getElementById("detailSelect"), templateArea:document.getElementById("templateArea"), addOriginalBtn:document.getElementById("addOriginalBtn"), adminDot:document.getElementById("adminDot"), adminModal:document.getElementById("adminModal"), adminPassInput:document.getElementById("adminPassInput"), unlockAdminBtn:document.getElementById("unlockAdminBtn"), adminBody:document.getElementById("adminBody"), pinCurrentBtn:document.getElementById("pinCurrentBtn"), clearPinsBtn:document.getElementById("clearPinsBtn")
+    };
 
     const state = { eventData:null, user:null, myStatus:"chill", mode:"sample", pick:{ camera:null, mood:null, size:null, plusOne:null }, timerInterval:null, adminUnlocked:false };
 
+    const eventRef = (path="") => ref(db, `photoEvents/${EVENT_ID}${path}`);
+    const qs = (sel, root=document)=>root.querySelector(sel);
+    const node = (tag, cls, text)=>{ const n=document.createElement(tag); if(cls) n.className=cls; if(text!=null) n.textContent=text; return n; };
+    const openModal = m=>m.classList.add("show"); const closeModal = m=>m.classList.remove("show");
+    const esc = (v="")=>String(v).replace(/[&<>\"']/g, s=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[s]));
+    const mapName = id => MAPS.find(v=>v.id===id)?.name || id;
+    const statusInfo = id => STATUS_OPTIONS.find(v=>v.id===id) || STATUS_OPTIONS[2];
+    const isAdmin = ()=>state.adminUnlocked;
     function uid(){ const key=`photo_event_uid_${EVENT_ID}`; let id=localStorage.getItem(key); if(!id){ id="u_"+Math.random().toString(36).slice(2,10); localStorage.setItem(key,id);} return id; }
     function displayName(){ const key=`photo_event_name_${EVENT_ID}`; let name=localStorage.getItem(key); if(!name){ name="Guest-"+Math.random().toString(36).slice(2,5).toUpperCase(); localStorage.setItem(key,name);} return name; }
-    function qs(sel, root=document){ return root.querySelector(sel); }
-    function node(tag, cls, text){ const n=document.createElement(tag); if(cls) n.className=cls; if(text!=null) n.textContent=text; return n; }
-    function openModal(modal){ modal.classList.add("show"); }
-    function closeModal(modal){ modal.classList.remove("show"); }
-    function esc(v=""){ return String(v).replace(/[&<>\"']/g, s=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[s])); }
-    function mapName(id){ return MAPS.find(v=>v.id===id)?.name || id; }
-    function flowInfo(id){ return FLOW.find(v=>v.id===id) || BREAK_FLOW; }
-    function statusInfo(id){ return STATUS_OPTIONS.find(v=>v.id===id) || STATUS_OPTIONS[2]; }
-    function eventRef(path=""){ return ref(db, `photoEvents/${EVENT_ID}${path}`); }
-    function sortQueue(queueObj){ return Object.values(queueObj || {}).sort((a,b)=>{ const aRank=a.active?0:1, bRank=b.active?0:1; if(aRank!==bRank) return aRank-bRank; const av=typeof a.voteCount === 'number' ? -a.voteCount : 0; const bv=typeof b.voteCount === 'number' ? -b.voteCount : 0; if(av!==bv) return av-bv; return (a.createdAt||0)-(b.createdAt||0); }); }
+    function sortQueue(queueObj){ return Object.values(queueObj || {}).sort((a,b)=>{ const aPin=a.pinned?0:1, bPin=b.pinned?0:1; if(aPin!==bPin) return aPin-bPin; const aActive=a.active?0:1, bActive=b.active?0:1; if(aActive!==bActive) return aActive-bActive; const av=-(a.voteCount||0), bv=-(b.voteCount||0); if(av!==bv) return av-bv; return (a.createdAt||0)-(b.createdAt||0); }); }
     function currentPhoto(data){ const map=data?.currentMap || 'bridge'; const queue=sortQueue(data?.queue || {}).filter(v=>!v.finished && v.map===map); return queue.find(v=>v.active) || queue[0] || null; }
-    function myCurrentQueueId(data){ const queue=Object.values(data?.queue || {}); const item=queue.find(v=>v.leaderId===state.user?.id && !v.finished); return item?.id || null; }
+    function myCurrentQueueId(data){ const queue=Object.values(data?.queue || {}); return queue.find(v=>v.leaderId===state.user?.id && !v.finished)?.id || null; }
+    function canManage(item){ return isAdmin() || item.leaderId === state.user?.id; }
     function formatRemain(ms){ const safe=Math.max(0,ms); const m=Math.floor(safe/60000); const s=Math.floor((safe%60000)/1000); return `${m}:${String(s).padStart(2,'0')}`; }
-    function isAdmin(){ return state.adminUnlocked; }
-    function nextMapId(current){ const idx=MAP_ORDER.indexOf(current); return MAP_ORDER[(idx+1) % MAP_ORDER.length]; }
-    function renderGoals(){ els.goalList.innerHTML=`<div class="goal-card"><div class="goal-title">#私の推しフォト を作成・投稿が今日の目標</div><div class="goal-sub">推しフォトのSNS投稿は任意です。SNSに載せる場合は、他の人の名前が見える・特定できる写り込みは配慮してね。心配な方は 名前やアバター変更も推奨。</div></div>`; }
+    function nextMapId(current){ const idx=MAP_ORDER.indexOf(current); return MAP_ORDER[(idx+1)%MAP_ORDER.length]; }
+    function setBodyPhase(flow){ document.body.classList.remove('phase-brainstorm','phase-vote','phase-shoot','phase-break'); document.body.classList.add(`phase-${flow||'brainstorm'}`); }
 
     async function ensureSeed(){
       const snap=await get(eventRef()); if(snap.exists()) return;
       const now=Date.now();
-      await set(eventRef(), { currentFlow:'brainstorm', currentMap:'bridge', currentPhotoId:'seed_1', phaseStartedAt:now, phaseEndsAt:0, queue:{ seed_1:{ id:'seed_1', title:'歩道橋・集合写真', map:'bridge', type:'sample', leaderId:'system', leaderName:'SYSTEM', active:true, finished:false, createdAt:now, voteCount:0, votedBy:{}, image:SAMPLE_PHOTOS[0].image, template:{ camera:'目線', mood:'わちゃ', size:'4〜5', plusOne:'後ろで小さく入る' }, participants:{} }, seed_2:{ id:'seed_2', title:'3スポット・エモ並び', map:'spots', type:'sample', leaderId:'system', leaderName:'SYSTEM', active:false, finished:false, createdAt:now+1, voteCount:0, votedBy:{}, image:SAMPLE_PHOTOS[1].image, template:{ camera:'低め', mood:'エモ', size:'2〜3', plusOne:'前に座る' }, participants:{} }, seed_3:{ id:'seed_3', title:'プール・俯瞰で広め', map:'pool', type:'sample', leaderId:'system', leaderName:'SYSTEM', active:false, finished:false, createdAt:now+2, voteCount:0, votedBy:{}, image:SAMPLE_PHOTOS[2].image, template:{ camera:'俯瞰', mood:'かっこよく', size:'何人でも', plusOne:'後ろで小さく入る' }, participants:{} } }, people:{} });
+      await set(eventRef(), { currentFlow:'brainstorm', currentMap:'bridge', currentPhotoId:'seed_1', phaseStartedAt:now, phaseEndsAt:0, queue:{ seed_1:{ id:'seed_1', title:'歩道橋・集合写真', map:'bridge', type:'sample', leaderId:'system', leaderName:'SYSTEM', active:true, finished:false, pinned:false, createdAt:now, voteCount:0, votedBy:{}, image:SAMPLE_PHOTOS[0].image, template:{ camera:'目線', mood:'わちゃ', size:'4〜5', plusOne:'後ろで小さく入る' }, participants:{} }, seed_2:{ id:'seed_2', title:'3スポット・エモ並び', map:'spots', type:'sample', leaderId:'system', leaderName:'SYSTEM', active:false, finished:false, pinned:false, createdAt:now+1, voteCount:0, votedBy:{}, image:SAMPLE_PHOTOS[1].image, template:{ camera:'低め', mood:'エモ', size:'2〜3', plusOne:'前に座る' }, participants:{} }, seed_3:{ id:'seed_3', title:'プール・俯瞰で広め', map:'pool', type:'sample', leaderId:'system', leaderName:'SYSTEM', active:false, finished:false, pinned:false, createdAt:now+2, voteCount:0, votedBy:{}, image:SAMPLE_PHOTOS[2].image, template:{ camera:'俯瞰', mood:'かっこよく', size:'何人でも', plusOne:'後ろで小さく入る' }, participants:{} } }, people:{} });
     }
+    async function ensureUser(){ const id=uid(); state.user={ id, name:displayName() }; state.myStatus=localStorage.getItem(`photo_event_status_${EVENT_ID}`)||'chill'; els.nameInput.value=state.user.name; await update(eventRef(`/people/${id}`), { name:state.user.name, status:state.myStatus, updatedAt:Date.now() }); }
 
-    async function ensureUser(){ const id=uid(); const user={ id, name:displayName() }; state.user=user; state.myStatus=localStorage.getItem(`photo_event_status_${EVENT_ID}`)||'chill'; els.nameInput.value=user.name; await update(eventRef(`/people/${id}`), { name:user.name, status:state.myStatus, updatedAt:Date.now() }); }
+    function renderFlow(data){ const current=data?.currentFlow || 'brainstorm'; setBodyPhase(current); const index=FLOW.findIndex(v=>v.id===current); els.flowLine.innerHTML=''; FLOW.forEach((step,i)=>{ const item=node('div','flow-step'); if(i<index) item.classList.add('done'); if(i===index) item.classList.add('active'); item.innerHTML=`<div class="flow-mini">${esc(mapName(data?.currentMap || 'bridge'))}</div><div class="flow-name">${esc(step.name)}</div><div class="flow-sub">${esc(step.time)}</div>`; els.flowLine.appendChild(item); }); }
+    function renderCurrent(data){ const photo=currentPhoto(data); const flow=data?.currentFlow==='break' ? BREAK_FLOW : (FLOW.find(v=>v.id===data?.currentFlow) || FLOW[0]); const title=photo?.title || flow.name; const map=mapName(data?.currentMap || 'bridge'); const remain=(data?.phaseEndsAt || 0)-Date.now(); els.currentTitle.textContent=title; els.currentMeta.innerHTML=[`現状：${flow.name}`,`マップ：${map}`,`残り：${data?.currentFlow==='break' ? formatRemain(remain) : '手動'}`,`運営：${isAdmin() ? 'ON' : 'OFF'}`].map(v=>`<span class="meta-pill">${esc(v)}</span>`).join(''); els.eventMini.textContent=`event=${EVENT_ID}`; els.detailBody.innerHTML=photo ? `<div class="photo-card current"><div class="card-head"><div><div class="card-title">${esc(photo.title)}</div><div class="card-sub">${esc(flow.name)} ・ ${esc(mapName(photo.map))}</div></div><div class="kind">${photo.type === 'sample' ? '選択' : 'オリジナル'}</div></div>${photo.image ? `<div class="thumb" style="height:180px;background-image:url('${esc(photo.image)}')"></div>` : ``}<div class="chips"><span class="chip">${esc(photo.template?.camera || '指定なし')}</span><span class="chip">${esc(photo.template?.mood || '指定なし')}</span><span class="chip">${esc(photo.template?.size || '指定なし')}</span><span class="chip">❤️ ${Number(photo.voteCount || 0)}</span></div></div>` : `<div class="empty">なし</div>`; }
 
-    function renderFlow(data){
-      const current=data?.currentFlow || 'brainstorm';
-      const index=FLOW.findIndex(v=>v.id===current);
-      els.flowLine.innerHTML='';
-      FLOW.forEach((step,i)=>{ const item=node('div','flow-step'); if(i<index) item.classList.add('done'); if(i===index) item.classList.add('active'); item.innerHTML=`<div class="flow-mini">${esc(mapName(data?.currentMap || 'bridge'))}</div><div class="flow-name">${esc(step.name)}</div><div class="flow-sub">${esc(step.time)}</div>`; els.flowLine.appendChild(item); });
-    }
+    function renderForced(data){ const map=data?.currentMap || 'bridge'; const forced=sortQueue(data?.queue || {}).filter(v=>!v.finished && v.map===map && v.pinned); els.forcedWrap.style.display = forced.length ? 'block':'none'; els.forcedList.innerHTML=''; forced.forEach(item=>{ const card=node('div','photo-card pick-card'); card.innerHTML=`<div class="card-head"><div><div class="card-title">${esc(item.title)}</div><div class="card-sub">強制上表示 ・ ${esc(item.leaderName || 'Guest')}</div></div><div class="kind">固定</div></div>`; els.forcedList.appendChild(card); }); }
 
-    function renderCurrent(data){
-      const photo=currentPhoto(data); const flow=data?.currentFlow==='break' ? BREAK_FLOW : flowInfo(data?.currentFlow || 'brainstorm'); const title=photo?.title || flow.name; const map=mapName(data?.currentMap || 'bridge'); const participants=Object.keys(photo?.participants || {}).length; const remain=(data?.phaseEndsAt || 0)-Date.now();
-      els.currentTitle.textContent=title;
-      els.currentMeta.innerHTML=[`現状：${flow.name}`,`マップ：${map}`,`残り：${data?.currentFlow==='break' ? formatRemain(remain) : '手動'}`,`参加：${participants}人`,`運営：${isAdmin() ? 'ON' : 'OFF'}`].map(v=>`<span class="meta-pill">${esc(v)}</span>`).join('');
-      els.eventMini.textContent=`event=${EVENT_ID}`;
-      els.detailBody.innerHTML=photo ? `<div class="photo-card current"><div class="card-head"><div><div class="card-title">${esc(photo.title)}</div><div class="card-sub">${esc(flow.name)} ・ ${esc(mapName(photo.map))}</div></div><div class="kind">${photo.type === 'sample' ? '選択' : 'オリジナル'}</div></div>${photo.image ? `<div class="thumb" style="height:180px;background-image:url('${esc(photo.image)}')"></div>` : ``}<div class="chips"><span class="chip">${esc(photo.template?.camera || '指定なし')}</span><span class="chip">${esc(photo.template?.mood || '指定なし')}</span><span class="chip">${esc(photo.template?.size || '指定なし')}</span><span class="chip">${esc(photo.template?.plusOne || '指定なし')}</span></div></div>` : `<div class="empty">なし</div>`;
-    }
+    function renderQueue(data){ const map=data?.currentMap || 'bridge'; const flow=data?.currentFlow || 'brainstorm'; const queue=sortQueue(data?.queue || {}).filter(v=>!v.finished && v.map===map && !v.pinned); els.queueList.innerHTML=''; if(!queue.length){ els.queueList.innerHTML=`<div class="empty">まだありません</div>`; } else { queue.forEach((item,index)=>{ const joined=!!item.participants?.[state.user.id]; const voted=!!item.votedBy?.[state.user.id]; const card=node('div',`photo-card ${item.active ? 'current':''} ${flow==='vote' ? 'vote-card':''}`); card.innerHTML=`<div class="card-head"><div><div class="card-title">${esc(item.title)}</div><div class="card-sub">${index===0 ? '上から順に表示' : '一覧'} ・ ${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')}</div></div><div class="kind">${item.type === 'sample' ? '選択' : 'オリジナル'}</div></div>${item.image ? `<div class="thumb" style="background-image:url('${esc(item.image)}')"></div>` : ``}<div class="chips"><span class="chip">${esc(item.template?.camera || '指定なし')}</span><span class="chip">${esc(item.template?.mood || '指定なし')}</span><span class="chip">${esc(item.template?.size || '指定なし')}</span><span class="chip">❤️ ${Number(item.voteCount || 0)}</span></div><div class="actions"><button class="btn ${joined ? '' : 'primary'}" data-join="${item.id}">${joined ? '参加中' : '参加する'}</button>${flow==='vote' ? `<button class="btn push" data-vote="${item.id}">${voted ? '推し済み' : '推し'}</button>` : ``}${canManage(item) ? `<button class="btn danger" data-cancel="${item.id}">取り消し</button>` : ``}${canManage(item) && item.active ? `<button class="btn ok" data-done="${item.id}">撮れた！！</button>` : ``}${isAdmin() ? `<button class="btn warn" data-pin="${item.id}">${item.pinned ? '固定中' : '上に固定'}</button>` : ``}</div>`; els.queueList.appendChild(card); }); }
+      const next=queue.filter(v=>!v.active).slice(0,3); els.nextList.innerHTML=next.length ? '' : `<div class="empty">なし</div>`; next.forEach(item=>{ const card=node('div','photo-card'); card.innerHTML=`<div class="card-title">${esc(item.title)}</div><div class="card-sub">${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')} ・ ${Number(item.voteCount || 0)}推し</div>`; els.nextList.appendChild(card); }); }
 
-    function renderQueue(data){
-      const map=data?.currentMap || 'bridge'; const queue=sortQueue(data?.queue || {}).filter(v=>!v.finished && v.map===map); els.queueList.innerHTML='';
-      if(!queue.length){ els.queueList.innerHTML=`<div class="empty">まだありません</div>`; } else {
-        queue.forEach((item,index)=>{ const joined=!!item.participants?.[state.user.id]; const mine=item.leaderId===state.user.id; const card=node('div',`photo-card ${item.active ? 'current':''}`); card.innerHTML=`<div class="card-head"><div><div class="card-title">${esc(item.title)}</div><div class="card-sub">${index===0 ? '今やってる' : '次のフォト'} ・ ${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')}</div></div><div class="kind">${item.type === 'sample' ? '選択' : 'オリジナル'}</div></div>${item.image ? `<div class="thumb" style="background-image:url('${esc(item.image)}')"></div>` : ``}<div class="chips"><span class="chip">${esc(item.template?.camera || '指定なし')}</span><span class="chip">${esc(item.template?.mood || '指定なし')}</span><span class="chip">${esc(item.template?.size || '指定なし')}</span><span class="chip">❤️ ${Number(item.voteCount || 0)}</span></div><div class="actions"><button class="btn ${joined ? '' : 'primary'}" data-join="${item.id}">${joined ? '参加中' : '参加する'}</button>${mine && !item.active ? `<button class="btn danger" data-cancel="${item.id}">取り消す</button>` : ``}${isAdmin() && item.active ? `<button class="btn ok" data-done="${item.id}">撮れた！！</button>` : ``}</div>`; els.queueList.appendChild(card); });
-      }
-      const next=queue.filter(v=>!v.active).slice(0,3); els.nextList.innerHTML=next.length ? '' : `<div class="empty">なし</div>`; next.forEach(item=>{ const card=node('div','photo-card'); card.innerHTML=`<div class="card-title">${esc(item.title)}</div><div class="card-sub">${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')} ・ ${Number(item.voteCount || 0)}票</div>`; els.nextList.appendChild(card); });
-    }
-
-    function renderVote(data){
-      const flow=data?.currentFlow || 'brainstorm'; const map=data?.currentMap || 'bridge'; const queue=sortQueue(data?.queue || {}).filter(v=>!v.finished && !v.active && v.map===map); els.voteList.innerHTML='';
-      if(flow !== 'vote'){ els.voteList.innerHTML=`<div class="empty">投票タイムになると表示</div>`; return; }
-      if(!queue.length){ els.voteList.innerHTML=`<div class="empty">候補がありません</div>`; return; }
-      queue.forEach(item=>{ const voted=!!item.votedBy?.[state.user.id]; const card=node('div','photo-card vote-card'); card.innerHTML=`<div class="card-head"><div><div class="card-title">${esc(item.title)}</div><div class="card-sub">${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')}</div></div><div class="vote-count">${Number(item.voteCount || 0)}</div></div>${item.image ? `<div class="thumb" style="background-image:url('${esc(item.image)}')"></div>` : ``}<div class="actions"><button class="btn pink" data-vote="${item.id}">${voted ? '投票済み' : '投票する'}</button></div>`; els.voteList.appendChild(card); });
-    }
-
-    function renderPeople(data){ const people=Object.entries(data?.people || {}).map(([id,value])=>({ id, ...value })); people.sort((a,b)=>(a.name||'').localeCompare(b.name||'')); els.peopleList.innerHTML=people.length ? '' : `<div class="empty">まだいません</div>`; people.forEach(person=>{ const info=statusInfo(person.status); const item=node('div','person'); item.innerHTML=`<div class="person-icon">${info.icon}</div><div><div class="person-name">${esc(person.name || 'Guest')}${person.id===state.user?.id ? ' ・you' : ''}</div><div class="person-sub">${esc(info.label)}</div></div>`; els.peopleList.appendChild(item); }); }
-
+    function renderVote(data){ const flow=data?.currentFlow || 'brainstorm'; const map=data?.currentMap || 'bridge'; const queue=sortQueue(data?.queue || {}).filter(v=>!v.finished && !v.active && v.map===map && !v.pinned); els.voteList.innerHTML=''; if(flow !== 'vote'){ els.voteList.innerHTML=`<div class="empty">投票タイムになると表示</div>`; return; } if(!queue.length){ els.voteList.innerHTML=`<div class="empty">候補がありません</div>`; return; } queue.forEach(item=>{ const voted=!!item.votedBy?.[state.user.id]; const card=node('div','photo-card vote-card'); card.innerHTML=`<div class="card-head"><div><div class="card-title">${esc(item.title)}</div><div class="card-sub">${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')}</div></div><div class="vote-count">${Number(item.voteCount || 0)}</div></div>${item.image ? `<div class="thumb" style="background-image:url('${esc(item.image)}')"></div>` : ``}<div class="actions"><button class="btn push" data-vote="${item.id}">${voted ? '推し済み' : '推し'}</button></div>`; els.voteList.appendChild(card); }); }
+    function renderPeople(data){ const people=Object.entries(data?.people || {}).map(([id,value])=>({id,...value})); people.sort((a,b)=>(a.name||'').localeCompare(b.name||'')); els.peopleList.innerHTML=people.length ? '' : `<div class="empty">まだいません</div>`; people.forEach(person=>{ const info=statusInfo(person.status); const item=node('div','person'); item.innerHTML=`<div class="person-icon">${info.icon}</div><div><div class="person-name">${esc(person.name || 'Guest')}${person.id===state.user?.id ? ' ・you' : ''}</div><div class="person-sub">${esc(info.label)}</div></div>`; els.peopleList.appendChild(item); }); }
+    function renderGoals(){ els.goalList.innerHTML=`<div class="goal-card"><div class="goal-title">#私の推しフォト を作成・投稿が今日の目標</div><div class="goal-sub">推しフォトのSNS投稿は任意です。SNSに載せる場合は、他の人の名前が見える・特定できる写り込みは配慮してね。心配な方は 名前やアバター変更も推奨。</div></div>`; }
     function buildSamples(){ els.sampleList.innerHTML=''; SAMPLE_PHOTOS.forEach((sample,i)=>{ const item=node('div','sample'); item.innerHTML=`<div class="thumb" style="background-image:url('${esc(sample.image)}')"></div><div><div class="sample-title">${esc(sample.title)}</div><div class="sample-sub">${esc(mapName(sample.map))} ・ ${esc(sample.camera)} ・ ${esc(sample.mood)}</div></div><button class="btn primary" data-sample="${i}">入れる</button>`; els.sampleList.appendChild(item); }); }
-    function buildMapOptions(){ els.mapSelect.innerHTML = MAPS.map(v=>`<option value="${v.id}">${esc(v.name)}</option>`).join(''); }
+    function buildMapOptions(){ els.mapSelect.innerHTML=MAPS.map(v=>`<option value="${v.id}">${esc(v.name)}</option>`).join(''); }
     function buildStatusChips(){ els.statusChips.innerHTML=''; STATUS_OPTIONS.forEach(opt=>{ const btn=node('button',`chip-btn ${state.myStatus===opt.id ? 'on':''}`); btn.type='button'; btn.dataset.status=opt.id; btn.textContent=`${opt.icon} ${opt.label}`; els.statusChips.appendChild(btn); }); }
     function buildTemplateChips(){ Object.entries(TEMPLATES).forEach(([group,list])=>{ const root=qs(`[data-group="${group}"]`); root.innerHTML=''; list.forEach(value=>{ const btn=node('button',`chip-btn ${state.pick[group]===value ? 'on':''}`); btn.type='button'; btn.dataset.group=group; btn.dataset.value=value; btn.textContent=value; root.appendChild(btn); }); }); }
     function setMode(mode){ state.mode=mode; els.typeSample.classList.toggle('on', mode==='sample'); els.typeOriginal.classList.toggle('on', mode==='original'); els.sampleArea.style.display=mode==='sample' ? 'block':'none'; els.originalArea.style.display=mode==='original' ? 'block':'none'; }
 
     async function joinPhoto(photoId){ await set(eventRef(`/queue/${photoId}/participants/${state.user.id}`), { name:state.user.name, at:Date.now() }); }
-    async function votePhoto(photoId){ if((state.eventData?.currentFlow || '') !== 'vote') return; await runTransaction(eventRef(`/queue/${photoId}`), item => { if(!item || item.finished || item.active) return item; item.votedBy ||= {}; item.voteCount ||= 0; if(item.votedBy[state.user.id]) return item; item.votedBy[state.user.id]=true; item.voteCount += 1; return item; }); }
-    async function cancelOwnPhoto(photoId){ const snap=await get(eventRef(`/queue/${photoId}`)); const data=snap.val(); if(!data || data.leaderId!==state.user.id || data.active) return; await remove(eventRef(`/queue/${photoId}`)); }
-
-    async function setPhase(phaseId){ if(!isAdmin()) return; const updates={}; updates[`photoEvents/${EVENT_ID}/currentFlow`]=phaseId; updates[`photoEvents/${EVENT_ID}/phaseStartedAt`]=Date.now(); updates[`photoEvents/${EVENT_ID}/phaseEndsAt`]=phaseId==='break' ? Date.now()+BREAK_FLOW.durationMs : 0; await update(ref(db), updates); }
-    async function setMap(mapId){ if(!isAdmin()) return; const updates={}; updates[`photoEvents/${EVENT_ID}/currentMap`]=mapId; updates[`photoEvents/${EVENT_ID}/currentFlow`]='brainstorm'; updates[`photoEvents/${EVENT_ID}/phaseStartedAt`]=Date.now(); updates[`photoEvents/${EVENT_ID}/phaseEndsAt`]=0; const current=currentPhoto({ ...(state.eventData||{}), currentMap:mapId }); if(current){ updates[`photoEvents/${EVENT_ID}/currentPhotoId`]=current.id; Object.keys(state.eventData?.queue || {}).forEach(id=>{ updates[`photoEvents/${EVENT_ID}/queue/${id}/active`]=false; }); updates[`photoEvents/${EVENT_ID}/queue/${current.id}/active`]=true; } await update(ref(db), updates); }
+    async function votePhoto(photoId){ if((state.eventData?.currentFlow||'')!=='vote') return; await runTransaction(eventRef(`/queue/${photoId}`), item=>{ if(!item || item.finished) return item; item.votedBy ||= {}; item.voteCount ||= 0; if(item.votedBy[state.user.id]) return item; item.votedBy[state.user.id]=true; item.voteCount += 1; return item; }); }
+    async function cancelPhoto(photoId){ const snap=await get(eventRef(`/queue/${photoId}`)); const data=snap.val(); if(!data || !canManage(data)) return; await remove(eventRef(`/queue/${photoId}`)); }
+    async function finishCurrent(photoId){ const current=state.eventData?.queue?.[photoId]; if(!current || !canManage(current)) return; const updates={}; updates[`photoEvents/${EVENT_ID}/queue/${photoId}/active`]=false; updates[`photoEvents/${EVENT_ID}/queue/${photoId}/finished`]=true; updates[`photoEvents/${EVENT_ID}/currentFlow`]='break'; updates[`photoEvents/${EVENT_ID}/phaseStartedAt`]=Date.now(); updates[`photoEvents/${EVENT_ID}/phaseEndsAt`]=Date.now()+BREAK_FLOW.durationMs; await update(ref(db), updates); }
+    async function pinPhoto(photoId){ if(!isAdmin()) return; await update(eventRef(`/queue/${photoId}`), { pinned:true }); }
+    async function clearPins(){ if(!isAdmin()) return; const queue=state.eventData?.queue || {}; const updates={}; Object.keys(queue).forEach(id=>updates[`photoEvents/${EVENT_ID}/queue/${id}/pinned`]=false); await update(ref(db), updates); }
+    async function setPhase(phaseId){ if(!isAdmin()) return; const updates={}; updates[`photoEvents/${EVENT_ID}/currentFlow`]=phaseId; updates[`photoEvents/${EVENT_ID}/phaseStartedAt`]=Date.now(); updates[`photoEvents/${EVENT_ID}/phaseEndsAt`]=phaseId==='break' ? Date.now()+BREAK_FLOW.durationMs : 0; if(phaseId==='shoot'){ const map=state.eventData?.currentMap || 'bridge'; const queue=sortQueue(state.eventData?.queue || {}).filter(v=>!v.finished && v.map===map); const chosen=queue[0]; if(chosen){ Object.values(state.eventData?.queue||{}).forEach(v=>{ updates[`photoEvents/${EVENT_ID}/queue/${v.id}/active`]=false; }); updates[`photoEvents/${EVENT_ID}/queue/${chosen.id}/active`]=true; updates[`photoEvents/${EVENT_ID}/currentPhotoId`]=chosen.id; } } await update(ref(db), updates); }
+    async function setMap(mapId){ if(!isAdmin()) return; const updates={}; updates[`photoEvents/${EVENT_ID}/currentMap`]=mapId; updates[`photoEvents/${EVENT_ID}/currentFlow`]='brainstorm'; updates[`photoEvents/${EVENT_ID}/phaseStartedAt`]=Date.now(); updates[`photoEvents/${EVENT_ID}/phaseEndsAt`]=0; Object.values(state.eventData?.queue || {}).forEach(v=>{ updates[`photoEvents/${EVENT_ID}/queue/${v.id}/active`]=false; }); const queue=sortQueue(state.eventData?.queue || {}).filter(v=>!v.finished && v.map===mapId); if(queue[0]){ updates[`photoEvents/${EVENT_ID}/queue/${queue[0].id}/active`]=true; updates[`photoEvents/${EVENT_ID}/currentPhotoId`]=queue[0].id; } await update(ref(db), updates); }
     async function nextCycle(){ if(!isAdmin()) return; await setMap(nextMapId(state.eventData?.currentMap || 'bridge')); }
-    async function setBreak(){ if(!isAdmin()) return; await setPhase('break'); }
-
-    async function finishCurrent(photoId){
-      if(!isAdmin()) return;
-      const current=state.eventData?.queue?.[photoId]; if(!current) return;
-      const updates={}; updates[`photoEvents/${EVENT_ID}/queue/${photoId}/active`]=false; updates[`photoEvents/${EVENT_ID}/queue/${photoId}/finished`]=true; updates[`photoEvents/${EVENT_ID}/currentFlow`]='break'; updates[`photoEvents/${EVENT_ID}/phaseStartedAt`]=Date.now(); updates[`photoEvents/${EVENT_ID}/phaseEndsAt`]=Date.now()+BREAK_FLOW.durationMs;
-      const remaining=sortQueue(state.eventData?.queue || {}).filter(v=>!v.finished && v.id!==photoId && v.map===(state.eventData?.currentMap || 'bridge')); const next=remaining[0] || null; if(next){ updates[`photoEvents/${EVENT_ID}/queue/${next.id}/active`]=true; updates[`photoEvents/${EVENT_ID}/currentPhotoId`]=next.id; }
-      await update(ref(db), updates);
-    }
-
-    async function autoAdvanceIfNeeded(){
-      const data=state.eventData; if(!data || !isAdmin()) return; if(data.currentFlow !== 'break') return; const end=data.phaseEndsAt || 0; if(Date.now() < end) return; await nextCycle();
-    }
-
-    async function addSample(index){ const sample=SAMPLE_PHOTOS[index]; if(!sample) return; if(myCurrentQueueId(state.eventData)) return; const newRef=push(eventRef('/queue')); await set(newRef, { id:newRef.key, title:sample.title, map:sample.map, type:'sample', leaderId:state.user.id, leaderName:state.user.name, active:false, finished:false, participants:{}, createdAt:Date.now(), createdAtServer:serverTimestamp(), voteCount:0, votedBy:{}, image:sample.image, template:{ camera:sample.camera, mood:sample.mood, size:sample.size, plusOne:sample.plusOne } }); closeModal(els.leaderModal); }
-    async function addOriginal(){ const title=els.titleInput.value.trim(); if(!title) return; if(myCurrentQueueId(state.eventData)) return; const detail=els.detailSelect.value==='yes'; const newRef=push(eventRef('/queue')); await set(newRef, { id:newRef.key, title, map:els.mapSelect.value, type:'original', leaderId:state.user.id, leaderName:state.user.name, active:false, finished:false, participants:{}, createdAt:Date.now(), createdAtServer:serverTimestamp(), voteCount:0, votedBy:{}, image:'', template: detail ? { ...state.pick } : {} }); els.titleInput.value=''; closeModal(els.leaderModal); }
+    async function addSample(index){ const sample=SAMPLE_PHOTOS[index]; if(!sample || myCurrentQueueId(state.eventData)) return; const newRef=push(eventRef('/queue')); await set(newRef,{ id:newRef.key,title:sample.title,map:sample.map,type:'sample',leaderId:state.user.id,leaderName:state.user.name,active:false,finished:false,pinned:false,participants:{},createdAt:Date.now(),createdAtServer:serverTimestamp(),voteCount:0,votedBy:{},image:sample.image,template:{camera:sample.camera,mood:sample.mood,size:sample.size,plusOne:sample.plusOne} }); closeModal(els.leaderModal); }
+    async function addOriginal(){ const title=els.titleInput.value.trim(); if(!title || myCurrentQueueId(state.eventData)) return; const detail=els.detailSelect.value==='yes'; const newRef=push(eventRef('/queue')); await set(newRef,{ id:newRef.key,title,map:els.mapSelect.value,type:'original',leaderId:state.user.id,leaderName:state.user.name,active:false,finished:false,pinned:false,participants:{},createdAt:Date.now(),createdAtServer:serverTimestamp(),voteCount:0,votedBy:{},image:'',template:detail ? {...state.pick}:{} }); els.titleInput.value=''; closeModal(els.leaderModal); }
     async function saveName(){ const name=els.nameInput.value.trim(); if(!name) return; localStorage.setItem(`photo_event_name_${EVENT_ID}`, name); state.user.name=name; await update(eventRef(`/people/${state.user.id}`), { name, updatedAt:Date.now() }); }
     async function saveStatus(){ localStorage.setItem(`photo_event_status_${EVENT_ID}`, state.myStatus); await update(eventRef(`/people/${state.user.id}`), { status:state.myStatus, updatedAt:Date.now() }); closeModal(els.statusModal); }
+    async function autoAdvanceIfNeeded(){ const data=state.eventData; if(!data || !isAdmin() || data.currentFlow!=='break') return; if(Date.now() < (data.phaseEndsAt || 0)) return; await nextCycle(); }
 
     function bindEvents(){
       document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>closeModal(document.getElementById(btn.dataset.close))));
-      [els.detailModal, els.statusModal, els.leaderModal, els.adminModal].forEach(modal=>modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(modal); }));
+      [els.detailModal,els.statusModal,els.leaderModal,els.adminModal].forEach(modal=>modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(modal); }));
       els.detailBtn.addEventListener('click',()=>openModal(els.detailModal));
       els.joinBtn.addEventListener('click', async ()=>{ const current=currentPhoto(state.eventData); if(current) await joinPhoto(current.id); });
       els.statusFab.addEventListener('click',()=>{ els.nameInput.value=state.user?.name || displayName(); buildStatusChips(); openModal(els.statusModal); });
-      els.saveNameBtn.addEventListener('click', saveName); els.saveStatusBtn.addEventListener('click', saveStatus); els.statusChips.addEventListener('click', e=>{ const btn=e.target.closest('[data-status]'); if(!btn) return; state.myStatus=btn.dataset.status; buildStatusChips(); });
-      els.leaderFab.addEventListener('click',()=>openModal(els.leaderModal)); els.typeSample.addEventListener('click',()=>setMode('sample')); els.typeOriginal.addEventListener('click',()=>setMode('original')); els.detailSelect.addEventListener('change',()=>{ els.templateArea.style.display=els.detailSelect.value==='yes' ? 'grid':'none'; }); els.addOriginalBtn.addEventListener('click', addOriginal);
-      els.sampleList.addEventListener('click',e=>{ const btn=e.target.closest('[data-sample]'); if(btn) addSample(Number(btn.dataset.sample)); });
-      els.templateArea.addEventListener('click',e=>{ const btn=e.target.closest('[data-group]'); if(!btn) return; state.pick[btn.dataset.group]=btn.dataset.value; buildTemplateChips(); });
-      els.queueList.addEventListener('click', async e=>{ const join=e.target.closest('[data-join]'); if(join){ await joinPhoto(join.dataset.join); return; } const done=e.target.closest('[data-done]'); if(done){ await finishCurrent(done.dataset.done); return; } const cancel=e.target.closest('[data-cancel]'); if(cancel){ await cancelOwnPhoto(cancel.dataset.cancel); } });
+      els.saveNameBtn.addEventListener('click', saveName); els.saveStatusBtn.addEventListener('click', saveStatus); els.statusChips.addEventListener('click',e=>{ const btn=e.target.closest('[data-status]'); if(!btn) return; state.myStatus=btn.dataset.status; buildStatusChips(); });
+      els.leaderFab.addEventListener('click',()=>openModal(els.leaderModal)); els.typeSample.addEventListener('click',()=>setMode('sample')); els.typeOriginal.addEventListener('click',()=>setMode('original')); els.detailSelect.addEventListener('change',()=>{ els.templateArea.style.display=els.detailSelect.value==='yes' ? 'grid':'none'; }); els.addOriginalBtn.addEventListener('click', addOriginal); els.sampleList.addEventListener('click',e=>{ const btn=e.target.closest('[data-sample]'); if(btn) addSample(Number(btn.dataset.sample)); }); els.templateArea.addEventListener('click',e=>{ const btn=e.target.closest('[data-group]'); if(!btn) return; state.pick[btn.dataset.group]=btn.dataset.value; buildTemplateChips(); });
+      els.queueList.addEventListener('click', async e=>{ const join=e.target.closest('[data-join]'); if(join){ await joinPhoto(join.dataset.join); return; } const vote=e.target.closest('[data-vote]'); if(vote){ await votePhoto(vote.dataset.vote); return; } const done=e.target.closest('[data-done]'); if(done){ await finishCurrent(done.dataset.done); return; } const cancel=e.target.closest('[data-cancel]'); if(cancel){ await cancelPhoto(cancel.dataset.cancel); return; } const pin=e.target.closest('[data-pin]'); if(pin){ await pinPhoto(pin.dataset.pin); } });
       els.voteList.addEventListener('click', async e=>{ const vote=e.target.closest('[data-vote]'); if(vote) await votePhoto(vote.dataset.vote); });
-      els.adminDot.addEventListener('click', ()=>openModal(els.adminModal));
-      els.unlockAdminBtn.addEventListener('click', ()=>{ if(els.adminPassInput.value === ADMIN_PASSWORD){ state.adminUnlocked = true; els.adminBody.style.display='block'; els.adminPassInput.value=''; renderCurrent(state.eventData || {}); } });
+      els.adminDot.addEventListener('click',()=>openModal(els.adminModal));
+      els.unlockAdminBtn.addEventListener('click',()=>{ if(els.adminPassInput.value===ADMIN_PASSWORD){ state.adminUnlocked=true; els.adminBody.style.display='block'; els.adminPassInput.value=''; renderCurrent(state.eventData || {}); } });
       els.adminBody.addEventListener('click', async e=>{ const phase=e.target.closest('[data-admin-phase]'); if(phase){ await setPhase(phase.dataset.adminPhase); return; } const map=e.target.closest('[data-admin-map]'); if(map){ await setMap(map.dataset.adminMap); } });
-      els.adminNextCycleBtn.addEventListener('click', nextCycle);
-      els.adminBreakBtn.addEventListener('click', setBreak);
+      els.pinCurrentBtn.addEventListener('click', async ()=>{ const current=currentPhoto(state.eventData); if(current) await pinPhoto(current.id); });
+      els.clearPinsBtn.addEventListener('click', clearPins);
     }
 
-    async function boot(){
-      await ensureSeed(); await ensureUser(); buildSamples(); buildMapOptions(); buildStatusChips(); buildTemplateChips(); renderGoals(); setMode('sample'); bindEvents();
-      onValue(eventRef(), snap=>{ const data=snap.val() || {}; state.eventData=data; renderFlow(data); renderCurrent(data); renderQueue(data); renderVote(data); renderPeople(data); });
-      if(state.timerInterval) clearInterval(state.timerInterval); state.timerInterval=setInterval(()=>{ if(state.eventData){ renderCurrent(state.eventData); autoAdvanceIfNeeded(); } }, 1000);
-    }
-
+    async function boot(){ await ensureSeed(); await ensureUser(); buildSamples(); buildMapOptions(); buildStatusChips(); buildTemplateChips(); renderGoals(); setMode('sample'); bindEvents(); onValue(eventRef(), snap=>{ const data=snap.val() || {}; state.eventData=data; renderFlow(data); renderCurrent(data); renderForced(data); renderQueue(data); renderVote(data); renderPeople(data); }); if(state.timerInterval) clearInterval(state.timerInterval); state.timerInterval=setInterval(()=>{ if(state.eventData){ renderCurrent(state.eventData); autoAdvanceIfNeeded(); } },1000); }
     boot();
   </script>
 </body>
