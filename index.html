@@ -19,12 +19,15 @@
       --mint:#89ecd3;
       --mint2:#59d8b3;
       --yellow:#ffd67d;
+      --pink:#f6a8d7;
+      --pink2:#ea78bf;
+      --danger:#ff9898;
       --shadow:0 16px 40px rgba(0,0,0,.34);
       --r:18px;
       --r2:14px;
       --safe: max(12px, env(safe-area-inset-top));
       --safeB: max(12px, env(safe-area-inset-bottom));
-      --topH:148px;
+      --topH:168px;
       --font: Inter, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
     }
     *{box-sizing:border-box}
@@ -32,52 +35,39 @@
     button,input,select{font:inherit}
     button{cursor:pointer;border:none}
     input,select{outline:none}
-    .app{max-width:1200px;margin:0 auto;padding:calc(var(--topH) + var(--safe)) 14px calc(96px + var(--safeB));min-height:100vh}
+    a{color:inherit}
+    .app{max-width:1260px;margin:0 auto;padding:calc(var(--topH) + var(--safe)) 14px calc(96px + var(--safeB));min-height:100vh}
 
-    .topbar{
-      position:fixed;inset:0 0 auto 0;z-index:90;
-      background:rgba(9,12,18,.78);backdrop-filter:blur(16px);
-      border-bottom:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow)
-    }
-    .topbar-inner{max-width:1200px;margin:0 auto;padding:calc(10px + var(--safe)) 14px 12px}
-    .status-strip{
-      display:grid;grid-template-columns:1fr;gap:10px;
-      background:linear-gradient(180deg,#151d2a,#101721);border:1px solid var(--line);border-radius:22px;padding:12px
-    }
+    .topbar{position:fixed;inset:0 0 auto 0;z-index:90;background:rgba(9,12,18,.8);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow)}
+    .topbar-inner{max-width:1260px;margin:0 auto;padding:calc(10px + var(--safe)) 14px 12px}
+    .status-strip{display:grid;gap:10px;background:linear-gradient(180deg,#151d2a,#101721);border:1px solid var(--line);border-radius:22px;padding:12px}
     .status-main{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center}
     .eyebrow{font-size:11px;letter-spacing:.12em;font-weight:900;color:var(--mint);text-transform:uppercase}
     .now-title{font-size:22px;font-weight:900;line-height:1.12;margin-top:2px}
     .now-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:5px}
     .meta-pill{padding:7px 10px;border-radius:999px;background:#1e2938;border:1px solid #314158;color:var(--soft);font-size:12px;font-weight:800}
-    .top-btn{
-      min-width:86px;height:46px;border-radius:999px;padding:0 16px;background:#22324a;border:1px solid #39557a;color:#fff;font-weight:900
-    }
+    .top-btn{min-width:86px;height:46px;border-radius:999px;padding:0 16px;background:#22324a;border:1px solid #39557a;color:#fff;font-weight:900}
     .top-btn.primary{background:linear-gradient(180deg,var(--blue),var(--blue2));color:#061420;border-color:#83c0ff}
 
     .flow-line{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-    .flow-step{
-      min-height:64px;padding:10px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);
-      opacity:.54;transform:scale(.985);transition:.18s ease
-    }
-    .flow-step.active{
-      opacity:1;transform:none;border-color:#79bcff;background:linear-gradient(180deg,rgba(121,188,255,.18),rgba(137,236,211,.08));
-      box-shadow:0 0 0 1px rgba(121,188,255,.18) inset
-    }
+    .flow-step{min-height:64px;padding:10px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);opacity:.54;transform:scale(.985);transition:.18s ease}
+    .flow-step.active{opacity:1;transform:none;border-color:#79bcff;background:linear-gradient(180deg,rgba(121,188,255,.18),rgba(137,236,211,.08));box-shadow:0 0 0 1px rgba(121,188,255,.18) inset}
     .flow-step.done{opacity:.72}
     .flow-mini{font-size:11px;color:var(--muted);font-weight:800}
     .flow-step.active .flow-mini{color:#def0ff}
     .flow-name{font-size:15px;font-weight:900;margin-top:3px}
     .flow-sub{font-size:12px;color:var(--muted);margin-top:2px}
 
-    .layout{display:grid;grid-template-columns:1.08fr .92fr;gap:14px}
+    .layout{display:grid;grid-template-columns:1.04fr .96fr;gap:14px}
     .panel{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:22px;padding:14px;box-shadow:var(--shadow)}
     .section-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
     .section-title{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:900;color:#d9e5f7}
     .section-mini{font-size:12px;color:var(--muted);font-weight:700}
 
-    .queue-list,.stack{display:grid;gap:10px}
+    .queue-list,.stack,.goal-list,.vote-list{display:grid;gap:10px}
     .photo-card{background:rgba(255,255,255,.03);border:1px solid #283244;border-radius:18px;padding:12px;display:grid;gap:8px}
     .photo-card.current{border-color:#73b9ff;background:linear-gradient(180deg,rgba(115,185,255,.17),rgba(255,255,255,.03))}
+    .photo-card.vote-card{border-color:#9267ff;background:linear-gradient(180deg,rgba(146,103,255,.13),rgba(255,255,255,.03))}
     .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
     .card-title{font-size:18px;font-weight:900;line-height:1.2}
     .card-sub{font-size:12px;color:var(--muted);margin-top:3px}
@@ -89,6 +79,8 @@
     .btn.primary{background:linear-gradient(180deg,var(--blue),var(--blue2));color:#061420;border-color:#83c0ff}
     .btn.ok{background:linear-gradient(180deg,var(--mint),var(--mint2));color:#061420;border-color:#7de5cf}
     .btn.warn{background:linear-gradient(180deg,#ffe09b,var(--yellow));color:#2a1f00;border-color:#ffd57d}
+    .btn.pink{background:linear-gradient(180deg,var(--pink),var(--pink2));color:#220914;border-color:#f2a8d3}
+    .btn.danger{background:linear-gradient(180deg,#ffb0b0,var(--danger));color:#250606;border-color:#ffadad}
     .btn.ghost{background:transparent}
     .btn:disabled{opacity:.45;cursor:default}
     .empty{padding:20px;border-radius:18px;border:1px dashed var(--line2);text-align:center;color:var(--muted)}
@@ -100,10 +92,13 @@
     .person-name{font-weight:900;line-height:1.12}
     .person-sub{font-size:12px;color:var(--muted);margin-top:2px}
 
-    .fixed-actions{
-      position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + var(--safeB));z-index:80;
-      width:min(1200px,calc(100% - 28px));display:flex;justify-content:flex-end;gap:10px;pointer-events:none
-    }
+    .goal-card{padding:12px;border-radius:18px;border:1px solid #355172;background:linear-gradient(180deg,rgba(120,190,255,.16),rgba(255,255,255,.03))}
+    .goal-title{font-weight:900}
+    .goal-sub{font-size:12px;color:var(--soft);margin-top:5px;line-height:1.5}
+
+    .vote-count{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 12px;border-radius:999px;background:#27203e;border:1px solid #54457e;color:#efe7ff;font-weight:900}
+
+    .fixed-actions{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + var(--safeB));z-index:80;width:min(1260px,calc(100% - 28px));display:flex;justify-content:flex-end;gap:10px;pointer-events:none}
     .fixed-actions > *{pointer-events:auto}
     .fab{height:56px;padding:0 18px;border-radius:999px;font-weight:900;box-shadow:var(--shadow)}
     .fab.state{background:linear-gradient(180deg,var(--mint),var(--mint2));color:#061420}
@@ -111,7 +106,7 @@
 
     .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center;z-index:120;padding:16px}
     .modal.show{display:flex}
-    .sheet{width:min(820px,100%);max-height:min(88vh,960px);overflow:auto;background:linear-gradient(180deg,#161d29,#111722);border:1px solid #2b3649;border-radius:24px;padding:14px;box-shadow:var(--shadow)}
+    .sheet{width:min(860px,100%);max-height:min(88vh,960px);overflow:auto;background:linear-gradient(180deg,#161d29,#111722);border:1px solid #2b3649;border-radius:24px;padding:14px;box-shadow:var(--shadow)}
     .sheet-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
     .sheet-title{font-size:20px;font-weight:900}
     .close{width:40px;height:40px;border-radius:50%;background:#1e2635;border:1px solid var(--line2);color:#fff}
@@ -129,21 +124,19 @@
     .pick-title{font-size:18px;font-weight:900;margin-top:4px}
 
     .sample-list{display:grid;gap:10px}
-    .sample{display:grid;grid-template-columns:92px 1fr auto;gap:10px;align-items:center;padding:10px;border-radius:18px;border:1px solid var(--line2);background:rgba(255,255,255,.03)}
-    .thumb{height:70px;border-radius:14px;background:linear-gradient(135deg,#29384d,#192230);border:1px solid var(--line2)}
+    .sample{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;padding:10px;border-radius:18px;border:1px solid var(--line2);background:rgba(255,255,255,.03)}
+    .thumb{height:78px;border-radius:14px;background-size:cover;background-position:center;border:1px solid var(--line2);background-color:#1a2230}
     .sample-title{font-weight:900}
     .sample-sub{font-size:12px;color:var(--muted);margin-top:3px}
 
     .toggle-grid{display:grid;gap:10px}
     .group{display:grid;gap:8px}
-    .group .chips{gap:8px}
     .chip-btn{min-height:38px;padding:8px 12px;border-radius:999px;border:1px solid var(--line2);background:#1d2736;color:#dce6f6;font-weight:900}
     .chip-btn.on{background:rgba(120,190,255,.14);border-color:#78beff;color:#f6fbff}
-
     .tiny-note{font-size:12px;color:var(--muted)}
 
     @media (max-width:940px){
-      .app{padding-top:calc(188px + var(--safe))}
+      .app{padding-top:calc(208px + var(--safe))}
       .layout{grid-template-columns:1fr}
       .status-main{grid-template-columns:1fr 1fr;align-items:start}
       .status-main > .now-block{grid-column:1/-1}
@@ -177,12 +170,20 @@
       <section class="panel">
         <div class="section-top">
           <div class="section-title">今やってるフォト</div>
-          <div class="section-mini">上が現在</div>
+          <div class="section-mini" id="eventMini"></div>
         </div>
         <div id="queueList" class="queue-list"></div>
       </section>
 
       <div class="side">
+        <section class="panel">
+          <div class="section-top">
+            <div class="section-title">投票</div>
+            <div class="section-mini">投票フェーズのみ有効</div>
+          </div>
+          <div id="voteList" class="vote-list"></div>
+        </section>
+
         <section class="panel">
           <div class="section-top">
             <div class="section-title">参加者</div>
@@ -197,6 +198,14 @@
             <div class="section-mini">キュー上位3件</div>
           </div>
           <div id="nextList" class="stack"></div>
+        </section>
+
+        <section class="panel">
+          <div class="section-top">
+            <div class="section-title">今日の目標</div>
+            <div class="section-mini">SNS投稿は任意</div>
+          </div>
+          <div id="goalList" class="goal-list"></div>
         </section>
       </div>
     </div>
@@ -312,7 +321,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
-    import { getDatabase, ref, set, get, update, push, onValue, serverTimestamp, remove } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
+    import { getDatabase, ref, set, get, update, push, onValue, serverTimestamp, remove, runTransaction } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBePhUfYinZ02-1BWbZvzV3IBwoAYh-kxE",
@@ -326,10 +335,12 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    getAnalytics(app);
+    try { getAnalytics(app); } catch {}
     const db = getDatabase(app);
 
-    const EVENT_ID = "default_event";
+    const params = new URLSearchParams(location.search);
+    const EVENT_ID = (params.get("event") || "default_event").replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 40) || "default_event";
+
     const MAPS = [
       { id:"bridge", name:"歩道橋", minutes:15 },
       { id:"spots", name:"3スポット", minutes:20 },
@@ -337,15 +348,39 @@
       { id:"break", name:"自由撮影・休憩", minutes:5 }
     ];
     const FLOW = [
-      { id:"brainstorm", name:"お題考えタイム", map:"歩道橋", time:"15分" },
-      { id:"vote", name:"投票", map:"3スポット", time:"20分" },
-      { id:"shoot", name:"自由撮影・休憩", map:"プール", time:"25分" },
-      { id:"break", name:"5分以上のんびり", map:"自由", time:"休憩" }
+      { id:"brainstorm", name:"お題考えタイム", map:"歩道橋", time:"15分", durationMs:15*60*1000 },
+      { id:"vote", name:"投票", map:"3スポット", time:"20分", durationMs:20*60*1000 },
+      { id:"shoot", name:"自由撮影・休憩", map:"プール", time:"25分", durationMs:25*60*1000 },
+      { id:"break", name:"5分以上のんびり", map:"自由", time:"5分休憩", durationMs:5*60*1000 }
     ];
     const SAMPLE_PHOTOS = [
-      { title:"歩道橋・集合写真", map:"bridge", camera:"目線", mood:"わちゃ", size:"4〜5", plusOne:"後ろで小さく入る" },
-      { title:"3スポット・エモ並び", map:"spots", camera:"低め", mood:"エモ", size:"2〜3", plusOne:"前に座る" },
-      { title:"プール・俯瞰で広め", map:"pool", camera:"俯瞰", mood:"かっこよく", size:"何人でも", plusOne:"後ろで小さく入る" }
+      {
+        title:"歩道橋・集合写真",
+        map:"bridge",
+        camera:"目線",
+        mood:"わちゃ",
+        size:"4〜5",
+        plusOne:"後ろで小さく入る",
+        image:"https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        title:"3スポット・エモ並び",
+        map:"spots",
+        camera:"低め",
+        mood:"エモ",
+        size:"2〜3",
+        plusOne:"前に座る",
+        image:"https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        title:"プール・俯瞰で広め",
+        map:"pool",
+        camera:"俯瞰",
+        mood:"かっこよく",
+        size:"何人でも",
+        plusOne:"後ろで小さく入る",
+        image:"https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=500&q=80"
+      }
     ];
     const TEMPLATES = {
       camera:["低め","目線","俯瞰"],
@@ -363,9 +398,12 @@
       currentTitle: document.getElementById("currentTitle"),
       currentMeta: document.getElementById("currentMeta"),
       flowLine: document.getElementById("flowLine"),
+      eventMini: document.getElementById("eventMini"),
       queueList: document.getElementById("queueList"),
+      voteList: document.getElementById("voteList"),
       peopleList: document.getElementById("peopleList"),
       nextList: document.getElementById("nextList"),
+      goalList: document.getElementById("goalList"),
       detailBtn: document.getElementById("detailBtn"),
       joinBtn: document.getElementById("joinBtn"),
       detailModal: document.getElementById("detailModal"),
@@ -395,23 +433,27 @@
       user:null,
       myStatus:"chill",
       mode:"sample",
-      pick:{ camera:null, mood:null, size:null, plusOne:null }
+      pick:{ camera:null, mood:null, size:null, plusOne:null },
+      timerInterval:null,
+      hostInterval:null
     };
 
     function uid(){
-      let id = localStorage.getItem("photo_event_uid");
+      const key = `photo_event_uid_${EVENT_ID}`;
+      let id = localStorage.getItem(key);
       if(!id){
         id = "u_" + Math.random().toString(36).slice(2,10);
-        localStorage.setItem("photo_event_uid", id);
+        localStorage.setItem(key, id);
       }
       return id;
     }
 
     function displayName(){
-      let name = localStorage.getItem("photo_event_name");
+      const key = `photo_event_name_${EVENT_ID}`;
+      let name = localStorage.getItem(key);
       if(!name){
         name = "Guest-" + Math.random().toString(36).slice(2,5).toUpperCase();
-        localStorage.setItem("photo_event_name", name);
+        localStorage.setItem(key, name);
       }
       return name;
     }
@@ -424,19 +466,24 @@
     function mapName(id){ return MAPS.find(v=>v.id===id)?.name || id; }
     function flowInfo(id){ return FLOW.find(v=>v.id===id) || FLOW[0]; }
     function statusInfo(id){ return STATUS_OPTIONS.find(v=>v.id===id) || STATUS_OPTIONS[2]; }
+    function eventRef(path=""){ return ref(db, `photoEvents/${EVENT_ID}${path}`); }
+    function isHost(data){ return data?.hostId && state.user?.id && data.hostId === state.user.id; }
 
     function sortQueue(queueObj){
       return Object.values(queueObj || {}).sort((a,b)=>{
         const aRank = a.active ? 0 : 1;
         const bRank = b.active ? 0 : 1;
         if(aRank !== bRank) return aRank - bRank;
+        const av = typeof a.voteCount === "number" ? -a.voteCount : 0;
+        const bv = typeof b.voteCount === "number" ? -b.voteCount : 0;
+        if(av !== bv) return av - bv;
         return (a.createdAt || 0) - (b.createdAt || 0);
       });
     }
 
     function currentPhoto(data){
       const queue = sortQueue(data?.queue || {});
-      return queue.find(v=>v.active) || queue[0] || null;
+      return queue.find(v=>v.active) || queue.find(v=>!v.finished) || null;
     }
 
     function myCurrentQueueId(data){
@@ -445,15 +492,24 @@
       return item?.id || null;
     }
 
-    async function ensureSeed(){
-      const eventRef = ref(db, `photoEvents/${EVENT_ID}`);
-      const snap = await get(eventRef);
-      if(snap.exists()) return;
+    function formatRemain(ms){
+      const safe = Math.max(0, ms);
+      const m = Math.floor(safe / 60000);
+      const s = Math.floor((safe % 60000) / 1000);
+      return `${m}:${String(s).padStart(2, "0")}`;
+    }
 
-      await set(eventRef, {
+    async function ensureSeed(){
+      const snap = await get(eventRef());
+      if(snap.exists()) return;
+      const now = Date.now();
+      await set(eventRef(), {
+        hostId: uid(),
         currentFlow:"brainstorm",
         currentMap:"bridge",
         currentPhotoId:"seed_1",
+        phaseStartedAt: now,
+        phaseEndsAt: now + FLOW[0].durationMs,
         queue:{
           seed_1:{
             id:"seed_1",
@@ -464,7 +520,10 @@
             leaderName:"SYSTEM",
             active:true,
             finished:false,
-            createdAt:Date.now(),
+            createdAt:now,
+            voteCount:0,
+            votedBy:{},
+            image:SAMPLE_PHOTOS[0].image,
             template:{ camera:"目線", mood:"わちゃ", size:"4〜5", plusOne:"後ろで小さく入る" },
             participants:{}
           },
@@ -477,7 +536,10 @@
             leaderName:"SYSTEM",
             active:false,
             finished:false,
-            createdAt:Date.now() + 1,
+            createdAt:now + 1,
+            voteCount:0,
+            votedBy:{},
+            image:SAMPLE_PHOTOS[1].image,
             template:{ camera:"低め", mood:"エモ", size:"2〜3", plusOne:"前に座る" },
             participants:{}
           }
@@ -490,9 +552,9 @@
       const id = uid();
       const user = { id, name: displayName() };
       state.user = user;
-      state.myStatus = localStorage.getItem("photo_event_status") || "chill";
+      state.myStatus = localStorage.getItem(`photo_event_status_${EVENT_ID}`) || "chill";
       els.nameInput.value = user.name;
-      await update(ref(db, `photoEvents/${EVENT_ID}/people/${id}`), {
+      await update(eventRef(`/people/${id}`), {
         name:user.name,
         status:state.myStatus,
         updatedAt:Date.now()
@@ -521,16 +583,20 @@
       const flow = flowInfo(data?.currentFlow || "brainstorm");
       const title = photo?.title || flow.name;
       const map = mapName(data?.currentMap || photo?.map || "bridge");
-      const minutes = MAPS.find(v=>v.id === (data?.currentMap || photo?.map || "bridge"))?.minutes || 5;
       const participants = Object.keys(photo?.participants || {}).length;
+      const remain = (data?.phaseEndsAt || 0) - Date.now();
+      const hostText = isHost(data) ? "主催中" : (data?.hostId ? "参加中" : "未設定");
 
       els.currentTitle.textContent = title;
       els.currentMeta.innerHTML = [
         `現状：${flow.name}`,
         `マップ：${map}`,
-        `時間：${minutes}分`,
-        `参加：${participants}人`
+        `残り：${formatRemain(remain)}`,
+        `参加：${participants}人`,
+        `権限：${hostText}`
       ].map(v=>`<span class="meta-pill">${esc(v)}</span>`).join("");
+
+      els.eventMini.textContent = `event=${EVENT_ID}`;
 
       els.detailBody.innerHTML = photo ? `
         <div class="photo-card current">
@@ -541,18 +607,25 @@
             </div>
             <div class="kind">${photo.type === 'sample' ? '選択' : 'オリジナル'}</div>
           </div>
+          ${photo.image ? `<div class="thumb" style="height:180px;background-image:url('${esc(photo.image)}')"></div>` : ``}
           <div class="chips">
             <span class="chip">${esc(photo.template?.camera || '指定なし')}</span>
             <span class="chip">${esc(photo.template?.mood || '指定なし')}</span>
             <span class="chip">${esc(photo.template?.size || '指定なし')}</span>
             <span class="chip">${esc(photo.template?.plusOne || '指定なし')}</span>
           </div>
+          ${isHost(data) ? `<div class="actions"><button class="btn warn" id="hostNextBtn">次へ</button><button class="btn ok" id="hostFinishBtn">撮れた！！</button></div>` : ``}
         </div>
       ` : `<div class="empty">なし</div>`;
+
+      const nextBtn = document.getElementById("hostNextBtn");
+      const finishBtn = document.getElementById("hostFinishBtn");
+      if(nextBtn) nextBtn.onclick = () => hostAdvancePhase(false);
+      if(finishBtn && photo) finishBtn.onclick = () => finishCurrent(photo.id);
     }
 
     function renderQueue(data){
-      const queue = sortQueue(data?.queue || {});
+      const queue = sortQueue(data?.queue || {}).filter(v=>!v.finished);
       els.queueList.innerHTML = "";
       if(!queue.length){
         els.queueList.innerHTML = `<div class="empty">まだありません</div>`;
@@ -560,6 +633,7 @@
         queue.forEach((item, index)=>{
           const joined = !!item.participants?.[state.user.id];
           const mine = item.leaderId === state.user.id;
+          const canManage = isHost(data);
           const card = node("div", `photo-card ${item.active ? 'current' : ''}`);
           card.innerHTML = `
             <div class="card-head">
@@ -569,16 +643,17 @@
               </div>
               <div class="kind">${item.type === 'sample' ? '選択' : 'オリジナル'}</div>
             </div>
+            ${item.image ? `<div class="thumb" style="background-image:url('${esc(item.image)}')"></div>` : ``}
             <div class="chips">
               <span class="chip">${esc(item.template?.camera || '指定なし')}</span>
               <span class="chip">${esc(item.template?.mood || '指定なし')}</span>
               <span class="chip">${esc(item.template?.size || '指定なし')}</span>
-              <span class="chip">${esc(item.template?.plusOne || '指定なし')}</span>
+              <span class="chip">❤️ ${Number(item.voteCount || 0)}</span>
             </div>
             <div class="actions">
               <button class="btn ${joined ? '' : 'primary'}" data-join="${item.id}">${joined ? '参加中' : '参加する'}</button>
-              ${mine && !item.active ? `<button class="btn warn" data-cancel="${item.id}">取り消す</button>` : ``}
-              ${item.active ? `<button class="btn ok" data-done="${item.id}">撮れた！！</button>` : ``}
+              ${mine && !item.active ? `<button class="btn danger" data-cancel="${item.id}">取り消す</button>` : ``}
+              ${canManage && item.active ? `<button class="btn ok" data-done="${item.id}">撮れた！！</button>` : ``}
             </div>
           `;
           els.queueList.appendChild(card);
@@ -591,10 +666,51 @@
         const card = node("div", "photo-card");
         card.innerHTML = `
           <div class="card-title">${esc(item.title)}</div>
-          <div class="card-sub">${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')}</div>
+          <div class="card-sub">${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')} ・ ${Number(item.voteCount || 0)}票</div>
         `;
         els.nextList.appendChild(card);
       });
+    }
+
+    function renderVote(data){
+      const flow = data?.currentFlow || "brainstorm";
+      const queue = sortQueue(data?.queue || {}).filter(v=>!v.finished && !v.active);
+      els.voteList.innerHTML = "";
+      if(flow !== "vote"){
+        els.voteList.innerHTML = `<div class="empty">投票タイムになると表示</div>`;
+        return;
+      }
+      if(!queue.length){
+        els.voteList.innerHTML = `<div class="empty">候補がありません</div>`;
+        return;
+      }
+      queue.forEach(item=>{
+        const voted = !!item.votedBy?.[state.user.id];
+        const card = node("div", "photo-card vote-card");
+        card.innerHTML = `
+          <div class="card-head">
+            <div>
+              <div class="card-title">${esc(item.title)}</div>
+              <div class="card-sub">${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')}</div>
+            </div>
+            <div class="vote-count">${Number(item.voteCount || 0)}</div>
+          </div>
+          ${item.image ? `<div class="thumb" style="background-image:url('${esc(item.image)}')"></div>` : ``}
+          <div class="actions">
+            <button class="btn pink" data-vote="${item.id}">${voted ? '投票済み' : '投票する'}</button>
+          </div>
+        `;
+        els.voteList.appendChild(card);
+      });
+    }
+
+    function renderGoals(){
+      els.goalList.innerHTML = `
+        <div class="goal-card">
+          <div class="goal-title">#私の推しフォト を作成・投稿が今日の目標</div>
+          <div class="goal-sub">推しフォトのSNS投稿は任意です。SNSに載せる場合は、他の人の名前が見える・特定できる写り込みは配慮してね。心配な方は 名前やアバター変更も推奨。</div>
+        </div>
+      `;
     }
 
     function renderPeople(data){
@@ -607,7 +723,7 @@
         item.innerHTML = `
           <div class="person-icon">${info.icon}</div>
           <div>
-            <div class="person-name">${esc(person.name || 'Guest')}</div>
+            <div class="person-name">${esc(person.name || 'Guest')}${person.id === data?.hostId ? ' 👑' : ''}</div>
             <div class="person-sub">${esc(info.label)}</div>
           </div>
         `;
@@ -620,7 +736,7 @@
       SAMPLE_PHOTOS.forEach((sample, i)=>{
         const item = node("div", "sample");
         item.innerHTML = `
-          <div class="thumb"></div>
+          <div class="thumb" style="background-image:url('${esc(sample.image)}')"></div>
           <div>
             <div class="sample-title">${esc(sample.title)}</div>
             <div class="sample-sub">${esc(mapName(sample.map))} ・ ${esc(sample.camera)} ・ ${esc(sample.mood)}</div>
@@ -670,41 +786,119 @@
     }
 
     async function joinPhoto(photoId){
-      await set(ref(db, `photoEvents/${EVENT_ID}/queue/${photoId}/participants/${state.user.id}`), {
+      await set(eventRef(`/queue/${photoId}/participants/${state.user.id}`), {
         name:state.user.name,
         at:Date.now()
       });
     }
 
-    async function cancelOwnPhoto(photoId){
-      const snap = await get(ref(db, `photoEvents/${EVENT_ID}/queue/${photoId}`));
-      const data = snap.val();
-      if(!data || data.leaderId !== state.user.id || data.active) return;
-      await remove(ref(db, `photoEvents/${EVENT_ID}/queue/${photoId}`));
+    async function votePhoto(photoId){
+      const flow = state.eventData?.currentFlow;
+      if(flow !== "vote") return;
+      const target = eventRef(`/queue/${photoId}`);
+      await runTransaction(target, item => {
+        if(!item || item.finished || item.active) return item;
+        item.votedBy ||= {};
+        item.voteCount ||= 0;
+        if(item.votedBy[state.user.id]) return item;
+        item.votedBy[state.user.id] = true;
+        item.voteCount += 1;
+        return item;
+      });
     }
 
-    async function advanceFlow(currentFlow){
+    async function cancelOwnPhoto(photoId){
+      const snap = await get(eventRef(`/queue/${photoId}`));
+      const data = snap.val();
+      if(!data || data.leaderId !== state.user.id || data.active) return;
+      await remove(eventRef(`/queue/${photoId}`));
+    }
+
+    function nextFlowId(currentFlow){
       const order = ["brainstorm","vote","shoot","break"];
       const idx = order.indexOf(currentFlow || "brainstorm");
       return order[(idx + 1) % order.length];
     }
 
+    function nextMapForFlow(flowId, chosenPhoto){
+      if(flowId === "brainstorm") return "bridge";
+      if(flowId === "vote") return "spots";
+      if(flowId === "shoot") return chosenPhoto?.map || "pool";
+      return "break";
+    }
+
+    async function pickTopVotedPhoto(){
+      const queue = sortQueue(state.eventData?.queue || {}).filter(v=>!v.finished && !v.active);
+      return queue[0] || null;
+    }
+
+    async function hostAdvancePhase(markCurrentFinished){
+      if(!isHost(state.eventData)) return;
+      const current = currentPhoto(state.eventData);
+      const currentFlow = state.eventData?.currentFlow || "brainstorm";
+      const nextFlow = nextFlowId(currentFlow);
+      const now = Date.now();
+      const updates = {};
+
+      if(markCurrentFinished && current){
+        updates[`photoEvents/${EVENT_ID}/queue/${current.id}/active`] = false;
+        updates[`photoEvents/${EVENT_ID}/queue/${current.id}/finished`] = true;
+      }
+
+      let nextPhoto = current;
+      if(nextFlow === "shoot") {
+        const top = await pickTopVotedPhoto();
+        if(top){
+          nextPhoto = top;
+          updates[`photoEvents/${EVENT_ID}/queue/${top.id}/active`] = true;
+          updates[`photoEvents/${EVENT_ID}/currentPhotoId`] = top.id;
+        }
+      }
+
+      updates[`photoEvents/${EVENT_ID}/currentFlow`] = nextFlow;
+      updates[`photoEvents/${EVENT_ID}/currentMap`] = nextMapForFlow(nextFlow, nextPhoto);
+      updates[`photoEvents/${EVENT_ID}/phaseStartedAt`] = now;
+      updates[`photoEvents/${EVENT_ID}/phaseEndsAt`] = now + (flowInfo(nextFlow).durationMs || 300000);
+      await update(ref(db), updates);
+    }
+
     async function finishCurrent(photoId){
-      const event = state.eventData;
-      if(!event?.queue?.[photoId]) return;
-      const queue = sortQueue(event.queue);
+      if(!isHost(state.eventData)) return;
+      const current = state.eventData?.queue?.[photoId];
+      if(!current) return;
       const updates = {};
       updates[`photoEvents/${EVENT_ID}/queue/${photoId}/active`] = false;
       updates[`photoEvents/${EVENT_ID}/queue/${photoId}/finished`] = true;
 
-      const next = queue.find(v=>v.id !== photoId && !v.finished && !v.active) || null;
+      const remaining = sortQueue(state.eventData?.queue || {}).filter(v=>!v.finished && v.id !== photoId);
+      const next = remaining[0] || null;
       if(next){
         updates[`photoEvents/${EVENT_ID}/queue/${next.id}/active`] = true;
         updates[`photoEvents/${EVENT_ID}/currentPhotoId`] = next.id;
         updates[`photoEvents/${EVENT_ID}/currentMap`] = next.map;
       }
-      updates[`photoEvents/${EVENT_ID}/currentFlow`] = await advanceFlow(event.currentFlow);
+
+      const now = Date.now();
+      updates[`photoEvents/${EVENT_ID}/currentFlow`] = "break";
+      updates[`photoEvents/${EVENT_ID}/phaseStartedAt`] = now;
+      updates[`photoEvents/${EVENT_ID}/phaseEndsAt`] = now + flowInfo("break").durationMs;
       await update(ref(db), updates);
+    }
+
+    async function autoAdvanceIfNeeded(){
+      const data = state.eventData;
+      if(!data || !isHost(data)) return;
+      const end = data.phaseEndsAt || 0;
+      if(Date.now() < end) return;
+      const flow = data.currentFlow || "brainstorm";
+      if(flow === "break") {
+        await hostAdvancePhase(false);
+        return;
+      }
+      if(flow === "vote") {
+        await hostAdvancePhase(false);
+        return;
+      }
     }
 
     async function addSample(index){
@@ -712,7 +906,7 @@
       if(!sample) return;
       if(myCurrentQueueId(state.eventData)) return;
 
-      const newRef = push(ref(db, `photoEvents/${EVENT_ID}/queue`));
+      const newRef = push(eventRef(`/queue`));
       await set(newRef, {
         id:newRef.key,
         title:sample.title,
@@ -725,6 +919,9 @@
         participants:{},
         createdAt:Date.now(),
         createdAtServer:serverTimestamp(),
+        voteCount:0,
+        votedBy:{},
+        image:sample.image,
         template:{
           camera:sample.camera,
           mood:sample.mood,
@@ -741,7 +938,7 @@
       if(myCurrentQueueId(state.eventData)) return;
 
       const detail = els.detailSelect.value === "yes";
-      const newRef = push(ref(db, `photoEvents/${EVENT_ID}/queue`));
+      const newRef = push(eventRef(`/queue`));
       await set(newRef, {
         id:newRef.key,
         title,
@@ -754,6 +951,9 @@
         participants:{},
         createdAt:Date.now(),
         createdAtServer:serverTimestamp(),
+        voteCount:0,
+        votedBy:{},
+        image:"",
         template: detail ? { ...state.pick } : {}
       });
       els.titleInput.value = "";
@@ -763,17 +963,17 @@
     async function saveName(){
       const name = els.nameInput.value.trim();
       if(!name) return;
-      localStorage.setItem("photo_event_name", name);
+      localStorage.setItem(`photo_event_name_${EVENT_ID}`, name);
       state.user.name = name;
-      await update(ref(db, `photoEvents/${EVENT_ID}/people/${state.user.id}`), {
+      await update(eventRef(`/people/${state.user.id}`), {
         name,
         updatedAt:Date.now()
       });
     }
 
     async function saveStatus(){
-      localStorage.setItem("photo_event_status", state.myStatus);
-      await update(ref(db, `photoEvents/${EVENT_ID}/people/${state.user.id}`), {
+      localStorage.setItem(`photo_event_status_${EVENT_ID}`, state.myStatus);
+      await update(eventRef(`/people/${state.user.id}`), {
         status:state.myStatus,
         updatedAt:Date.now()
       });
@@ -829,19 +1029,15 @@
       });
       els.queueList.addEventListener("click", async e=>{
         const join = e.target.closest("[data-join]");
-        if(join){
-          await joinPhoto(join.dataset.join);
-          return;
-        }
+        if(join){ await joinPhoto(join.dataset.join); return; }
         const done = e.target.closest("[data-done]");
-        if(done){
-          await finishCurrent(done.dataset.done);
-          return;
-        }
+        if(done){ await finishCurrent(done.dataset.done); return; }
         const cancel = e.target.closest("[data-cancel]");
-        if(cancel){
-          await cancelOwnPhoto(cancel.dataset.cancel);
-        }
+        if(cancel){ await cancelOwnPhoto(cancel.dataset.cancel); }
+      });
+      els.voteList.addEventListener("click", async e=>{
+        const vote = e.target.closest("[data-vote]");
+        if(vote){ await votePhoto(vote.dataset.vote); }
       });
     }
 
@@ -852,21 +1048,32 @@
       buildMapOptions();
       buildStatusChips();
       buildTemplateChips();
+      renderGoals();
       setMode("sample");
       bindEvents();
 
-      onValue(ref(db, `photoEvents/${EVENT_ID}`), snap=>{
+      onValue(eventRef(), snap=>{
         const data = snap.val() || {};
         state.eventData = data;
         renderFlow(data);
         renderCurrent(data);
         renderQueue(data);
+        renderVote(data);
         renderPeople(data);
       });
+
+      if(state.timerInterval) clearInterval(state.timerInterval);
+      state.timerInterval = setInterval(()=>{
+        if(state.eventData) renderCurrent(state.eventData);
+      }, 1000);
+
+      if(state.hostInterval) clearInterval(state.hostInterval);
+      state.hostInterval = setInterval(()=>{
+        autoAdvanceIfNeeded();
+      }, 3000);
     }
 
     boot();
   </script>
 </body>
 </html>
-
