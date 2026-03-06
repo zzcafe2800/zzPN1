@@ -23,11 +23,9 @@
       --pink2:#ea78bf;
       --danger:#ff9898;
       --shadow:0 16px 40px rgba(0,0,0,.34);
-      --r:18px;
-      --r2:14px;
       --safe: max(12px, env(safe-area-inset-top));
       --safeB: max(12px, env(safe-area-inset-bottom));
-      --topH:168px;
+      --topH:196px;
       --font: Inter, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
     }
     *{box-sizing:border-box}
@@ -36,9 +34,9 @@
     button{cursor:pointer;border:none}
     input,select{outline:none}
     a{color:inherit}
-    .app{max-width:1260px;margin:0 auto;padding:calc(var(--topH) + var(--safe)) 14px calc(96px + var(--safeB));min-height:100vh}
+    .app{max-width:1260px;margin:0 auto;padding:calc(var(--topH) + var(--safe) + 12px) 14px calc(110px + var(--safeB));min-height:100vh}
 
-    .topbar{position:fixed;inset:0 0 auto 0;z-index:90;background:rgba(9,12,18,.8);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow)}
+    .topbar{position:fixed;inset:0 0 auto 0;z-index:90;background:rgba(9,12,18,.82);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow)}
     .topbar-inner{max-width:1260px;margin:0 auto;padding:calc(10px + var(--safe)) 14px 12px}
     .status-strip{display:grid;gap:10px;background:linear-gradient(180deg,#151d2a,#101721);border:1px solid var(--line);border-radius:22px;padding:12px}
     .status-main{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center}
@@ -49,8 +47,8 @@
     .top-btn{min-width:86px;height:46px;border-radius:999px;padding:0 16px;background:#22324a;border:1px solid #39557a;color:#fff;font-weight:900}
     .top-btn.primary{background:linear-gradient(180deg,var(--blue),var(--blue2));color:#061420;border-color:#83c0ff}
 
-    .flow-line{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-    .flow-step{min-height:64px;padding:10px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);opacity:.54;transform:scale(.985);transition:.18s ease}
+    .flow-line{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .flow-step{min-height:70px;padding:10px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);opacity:.54;transform:scale(.985);transition:.18s ease}
     .flow-step.active{opacity:1;transform:none;border-color:#79bcff;background:linear-gradient(180deg,rgba(121,188,255,.18),rgba(137,236,211,.08));box-shadow:0 0 0 1px rgba(121,188,255,.18) inset}
     .flow-step.done{opacity:.72}
     .flow-mini{font-size:11px;color:var(--muted);font-weight:800}
@@ -95,7 +93,6 @@
     .goal-card{padding:12px;border-radius:18px;border:1px solid #355172;background:linear-gradient(180deg,rgba(120,190,255,.16),rgba(255,255,255,.03))}
     .goal-title{font-weight:900}
     .goal-sub{font-size:12px;color:var(--soft);margin-top:5px;line-height:1.5}
-
     .vote-count{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 12px;border-radius:999px;background:#27203e;border:1px solid #54457e;color:#efe7ff;font-weight:900}
 
     .fixed-actions{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + var(--safeB));z-index:80;width:min(1260px,calc(100% - 28px));display:flex;justify-content:flex-end;gap:10px;pointer-events:none}
@@ -103,6 +100,9 @@
     .fab{height:56px;padding:0 18px;border-radius:999px;font-weight:900;box-shadow:var(--shadow)}
     .fab.state{background:linear-gradient(180deg,var(--mint),var(--mint2));color:#061420}
     .fab.leader{background:linear-gradient(180deg,var(--blue),var(--blue2));color:#061420}
+
+    .admin-dot{position:fixed;left:14px;bottom:calc(14px + var(--safeB));z-index:85;width:16px;height:16px;border-radius:50%;background:#dce6f6;opacity:.55;box-shadow:0 0 0 1px rgba(255,255,255,.18) inset, 0 4px 14px rgba(0,0,0,.3)}
+    .admin-dot:hover{opacity:.95}
 
     .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center;z-index:120;padding:16px}
     .modal.show{display:flex}
@@ -133,16 +133,17 @@
     .group{display:grid;gap:8px}
     .chip-btn{min-height:38px;padding:8px 12px;border-radius:999px;border:1px solid var(--line2);background:#1d2736;color:#dce6f6;font-weight:900}
     .chip-btn.on{background:rgba(120,190,255,.14);border-color:#78beff;color:#f6fbff}
-    .tiny-note{font-size:12px;color:var(--muted)}
+    .admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 
     @media (max-width:940px){
-      .app{padding-top:calc(208px + var(--safe))}
+      :root{--topH:246px}
+      .app{padding-top:calc(var(--topH) + var(--safe) + 14px)}
       .layout{grid-template-columns:1fr}
       .status-main{grid-template-columns:1fr 1fr;align-items:start}
       .status-main > .now-block{grid-column:1/-1}
-      .flow-line{grid-template-columns:1fr 1fr}
+      .flow-line{grid-template-columns:1fr}
       .people{grid-template-columns:1fr}
-      .row,.split,.sample,.name-row{grid-template-columns:1fr}
+      .row,.split,.sample,.name-row,.admin-grid{grid-template-columns:1fr}
       .sample{align-items:start}
     }
   </style>
@@ -216,6 +217,8 @@
     <button class="fab leader" id="leaderFab">新しいフォト</button>
   </div>
 
+  <button class="admin-dot" id="adminDot" aria-label="admin"></button>
+
   <div class="modal" id="detailModal">
     <div class="sheet">
       <div class="sheet-head">
@@ -255,7 +258,6 @@
         <div class="sheet-title">新しいフォト</div>
         <button class="close" data-close="leaderModal">×</button>
       </div>
-
       <div class="form">
         <div class="split">
           <button class="pick on" id="typeSample">
@@ -267,51 +269,64 @@
             <div class="pick-title">オリジナル</div>
           </button>
         </div>
-
-        <div id="sampleArea">
-          <div class="sample-list" id="sampleList"></div>
-        </div>
-
+        <div id="sampleArea"><div class="sample-list" id="sampleList"></div></div>
         <div id="originalArea" style="display:none">
           <div class="form">
-            <div class="field">
-              <div class="label">タイトル</div>
-              <input class="input" id="titleInput" maxlength="26" placeholder="短く" />
-            </div>
+            <div class="field"><div class="label">タイトル</div><input class="input" id="titleInput" maxlength="26" placeholder="短く" /></div>
             <div class="row">
-              <div class="field">
-                <div class="label">撮る場所</div>
-                <select class="select" id="mapSelect"></select>
-              </div>
-              <div class="field">
-                <div class="label">細かい指定</div>
-                <select class="select" id="detailSelect">
-                  <option value="none">なし</option>
-                  <option value="yes">あり</option>
-                </select>
-              </div>
+              <div class="field"><div class="label">撮る場所</div><select class="select" id="mapSelect"></select></div>
+              <div class="field"><div class="label">細かい指定</div><select class="select" id="detailSelect"><option value="none">なし</option><option value="yes">あり</option></select></div>
             </div>
-
             <div id="templateArea" class="toggle-grid" style="display:none">
-              <div class="group">
-                <div class="label">カメラ</div>
-                <div class="chips" data-group="camera"></div>
-              </div>
-              <div class="group">
-                <div class="label">雰囲気</div>
-                <div class="chips" data-group="mood"></div>
-              </div>
-              <div class="group">
-                <div class="label">人数</div>
-                <div class="chips" data-group="size"></div>
-              </div>
-              <div class="group">
-                <div class="label">+1人来たら</div>
-                <div class="chips" data-group="plusOne"></div>
-              </div>
+              <div class="group"><div class="label">カメラ</div><div class="chips" data-group="camera"></div></div>
+              <div class="group"><div class="label">雰囲気</div><div class="chips" data-group="mood"></div></div>
+              <div class="group"><div class="label">人数</div><div class="chips" data-group="size"></div></div>
+              <div class="group"><div class="label">+1人来たら</div><div class="chips" data-group="plusOne"></div></div>
             </div>
-
             <button class="btn primary" id="addOriginalBtn">キューに入れる</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="adminModal">
+    <div class="sheet">
+      <div class="sheet-head">
+        <div class="sheet-title">運営モード</div>
+        <button class="close" data-close="adminModal">×</button>
+      </div>
+      <div class="form">
+        <div class="field">
+          <div class="label">パスワード</div>
+          <div class="name-row">
+            <input class="input" id="adminPassInput" type="password" maxlength="8" placeholder="0505" />
+            <button class="btn" id="unlockAdminBtn">開く</button>
+          </div>
+        </div>
+        <div id="adminBody" style="display:none">
+          <div class="field">
+            <div class="label">フェイズ移動</div>
+            <div class="admin-grid">
+              <button class="btn warn" data-admin-phase="brainstorm">お題考え</button>
+              <button class="btn pink" data-admin-phase="vote">投票</button>
+              <button class="btn ok" data-admin-phase="shoot">撮影</button>
+            </div>
+          </div>
+          <div class="field">
+            <div class="label">マップ移動</div>
+            <div class="admin-grid">
+              <button class="btn" data-admin-map="bridge">歩道橋</button>
+              <button class="btn" data-admin-map="spots">3スポット</button>
+              <button class="btn" data-admin-map="pool">プール</button>
+            </div>
+          </div>
+          <div class="field">
+            <div class="label">補助</div>
+            <div class="actions">
+              <button class="btn primary" id="adminNextCycleBtn">次のマップへ</button>
+              <button class="btn danger" id="adminBreakBtn">5分休憩にする</button>
+            </div>
           </div>
         </div>
       </div>
@@ -340,54 +355,26 @@
 
     const params = new URLSearchParams(location.search);
     const EVENT_ID = (params.get("event") || "default_event").replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 40) || "default_event";
+    const ADMIN_PASSWORD = "0505";
 
     const MAPS = [
       { id:"bridge", name:"歩道橋", minutes:15 },
       { id:"spots", name:"3スポット", minutes:20 },
-      { id:"pool", name:"プール", minutes:25 },
-      { id:"break", name:"自由撮影・休憩", minutes:5 }
+      { id:"pool", name:"プール", minutes:25 }
     ];
+    const MAP_ORDER = ["bridge","spots","pool"];
     const FLOW = [
-      { id:"brainstorm", name:"お題考えタイム", map:"歩道橋", time:"15分", durationMs:15*60*1000 },
-      { id:"vote", name:"投票", map:"3スポット", time:"20分", durationMs:20*60*1000 },
-      { id:"shoot", name:"自由撮影・休憩", map:"プール", time:"25分", durationMs:25*60*1000 },
-      { id:"break", name:"5分以上のんびり", map:"自由", time:"5分休憩", durationMs:5*60*1000 }
+      { id:"brainstorm", name:"お題考えタイム", time:"お題" },
+      { id:"vote", name:"投票", time:"投票" },
+      { id:"shoot", name:"撮影", time:"撮影" }
     ];
+    const BREAK_FLOW = { id:"break", name:"5分以上のんびり", time:"5分休憩", durationMs:5*60*1000 };
     const SAMPLE_PHOTOS = [
-      {
-        title:"歩道橋・集合写真",
-        map:"bridge",
-        camera:"目線",
-        mood:"わちゃ",
-        size:"4〜5",
-        plusOne:"後ろで小さく入る",
-        image:"https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        title:"3スポット・エモ並び",
-        map:"spots",
-        camera:"低め",
-        mood:"エモ",
-        size:"2〜3",
-        plusOne:"前に座る",
-        image:"https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        title:"プール・俯瞰で広め",
-        map:"pool",
-        camera:"俯瞰",
-        mood:"かっこよく",
-        size:"何人でも",
-        plusOne:"後ろで小さく入る",
-        image:"https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=500&q=80"
-      }
+      { title:"歩道橋・集合写真", map:"bridge", camera:"目線", mood:"わちゃ", size:"4〜5", plusOne:"後ろで小さく入る", image:"https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=500&q=80" },
+      { title:"3スポット・エモ並び", map:"spots", camera:"低め", mood:"エモ", size:"2〜3", plusOne:"前に座る", image:"https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=500&q=80" },
+      { title:"プール・俯瞰で広め", map:"pool", camera:"俯瞰", mood:"かっこよく", size:"何人でも", plusOne:"後ろで小さく入る", image:"https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=500&q=80" }
     ];
-    const TEMPLATES = {
-      camera:["低め","目線","俯瞰"],
-      mood:["エモ","わちゃ","かっこよく"],
-      size:["2〜3","4〜5","何人でも"],
-      plusOne:["前に座る","後ろで小さく入る"]
-    };
+    const TEMPLATES = { camera:["低め","目線","俯瞰"], mood:["エモ","わちゃ","かっこよく"], size:["2〜3","4〜5","何人でも"], plusOne:["前に座る","後ろで小さく入る"] };
     const STATUS_OPTIONS = [
       { id:"shooting", icon:"📷", label:"撮影中" },
       { id:"editing", icon:"✨", label:"加工中" },
@@ -395,682 +382,124 @@
     ];
 
     const els = {
-      currentTitle: document.getElementById("currentTitle"),
-      currentMeta: document.getElementById("currentMeta"),
-      flowLine: document.getElementById("flowLine"),
-      eventMini: document.getElementById("eventMini"),
-      queueList: document.getElementById("queueList"),
-      voteList: document.getElementById("voteList"),
-      peopleList: document.getElementById("peopleList"),
-      nextList: document.getElementById("nextList"),
-      goalList: document.getElementById("goalList"),
-      detailBtn: document.getElementById("detailBtn"),
-      joinBtn: document.getElementById("joinBtn"),
-      detailModal: document.getElementById("detailModal"),
-      detailBody: document.getElementById("detailBody"),
-      statusModal: document.getElementById("statusModal"),
-      nameInput: document.getElementById("nameInput"),
-      saveNameBtn: document.getElementById("saveNameBtn"),
-      statusFab: document.getElementById("statusFab"),
-      statusChips: document.getElementById("statusChips"),
-      saveStatusBtn: document.getElementById("saveStatusBtn"),
-      leaderFab: document.getElementById("leaderFab"),
-      leaderModal: document.getElementById("leaderModal"),
-      typeSample: document.getElementById("typeSample"),
-      typeOriginal: document.getElementById("typeOriginal"),
-      sampleArea: document.getElementById("sampleArea"),
-      originalArea: document.getElementById("originalArea"),
-      sampleList: document.getElementById("sampleList"),
-      titleInput: document.getElementById("titleInput"),
-      mapSelect: document.getElementById("mapSelect"),
-      detailSelect: document.getElementById("detailSelect"),
-      templateArea: document.getElementById("templateArea"),
-      addOriginalBtn: document.getElementById("addOriginalBtn")
-    };
+      currentTitle: document.getElementById("currentTitle"), currentMeta: document.getElementById("currentMeta"), flowLine: document.getElementById("flowLine"), eventMini: document.getElementById("eventMini"), queueList: document.getElementById("queueList"), voteList: document.getElementById("voteList"), peopleList: document.getElementById("peopleList"), nextList: document.getElementById("nextList"), goalList: document.getElementById("goalList"), detailBtn: document.getElementById("detailBtn"), joinBtn: document.getElementById("joinBtn"), detailModal: document.getElementById("detailModal"), detailBody: document.getElementById("detailBody"), statusModal: document.getElementById("statusModal"), nameInput: document.getElementById("nameInput"), saveNameBtn: document.getElementById("saveNameBtn"), statusFab: document.getElementById("statusFab"), statusChips: document.getElementById("statusChips"), saveStatusBtn: document.getElementById("saveStatusBtn"), leaderFab: document.getElementById("leaderFab"), leaderModal: document.getElementById("leaderModal"), typeSample: document.getElementById("typeSample"), typeOriginal: document.getElementById("typeOriginal"), sampleArea: document.getElementById("sampleArea"), originalArea: document.getElementById("originalArea"), sampleList: document.getElementById("sampleList"), titleInput: document.getElementById("titleInput"), mapSelect: document.getElementById("mapSelect"), detailSelect: document.getElementById("detailSelect"), templateArea: document.getElementById("templateArea"), addOriginalBtn: document.getElementById("addOriginalBtn"), adminDot: document.getElementById("adminDot"), adminModal: document.getElementById("adminModal"), adminPassInput: document.getElementById("adminPassInput"), unlockAdminBtn: document.getElementById("unlockAdminBtn"), adminBody: document.getElementById("adminBody"), adminNextCycleBtn: document.getElementById("adminNextCycleBtn"), adminBreakBtn: document.getElementById("adminBreakBtn") };
 
-    const state = {
-      eventData:null,
-      user:null,
-      myStatus:"chill",
-      mode:"sample",
-      pick:{ camera:null, mood:null, size:null, plusOne:null },
-      timerInterval:null,
-      hostInterval:null
-    };
+    const state = { eventData:null, user:null, myStatus:"chill", mode:"sample", pick:{ camera:null, mood:null, size:null, plusOne:null }, timerInterval:null, adminUnlocked:false };
 
-    function uid(){
-      const key = `photo_event_uid_${EVENT_ID}`;
-      let id = localStorage.getItem(key);
-      if(!id){
-        id = "u_" + Math.random().toString(36).slice(2,10);
-        localStorage.setItem(key, id);
-      }
-      return id;
-    }
-
-    function displayName(){
-      const key = `photo_event_name_${EVENT_ID}`;
-      let name = localStorage.getItem(key);
-      if(!name){
-        name = "Guest-" + Math.random().toString(36).slice(2,5).toUpperCase();
-        localStorage.setItem(key, name);
-      }
-      return name;
-    }
-
+    function uid(){ const key=`photo_event_uid_${EVENT_ID}`; let id=localStorage.getItem(key); if(!id){ id="u_"+Math.random().toString(36).slice(2,10); localStorage.setItem(key,id);} return id; }
+    function displayName(){ const key=`photo_event_name_${EVENT_ID}`; let name=localStorage.getItem(key); if(!name){ name="Guest-"+Math.random().toString(36).slice(2,5).toUpperCase(); localStorage.setItem(key,name);} return name; }
     function qs(sel, root=document){ return root.querySelector(sel); }
-    function node(tag, cls, text){ const n = document.createElement(tag); if(cls) n.className = cls; if(text != null) n.textContent = text; return n; }
+    function node(tag, cls, text){ const n=document.createElement(tag); if(cls) n.className=cls; if(text!=null) n.textContent=text; return n; }
     function openModal(modal){ modal.classList.add("show"); }
     function closeModal(modal){ modal.classList.remove("show"); }
     function esc(v=""){ return String(v).replace(/[&<>\"']/g, s=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[s])); }
     function mapName(id){ return MAPS.find(v=>v.id===id)?.name || id; }
-    function flowInfo(id){ return FLOW.find(v=>v.id===id) || FLOW[0]; }
+    function flowInfo(id){ return FLOW.find(v=>v.id===id) || BREAK_FLOW; }
     function statusInfo(id){ return STATUS_OPTIONS.find(v=>v.id===id) || STATUS_OPTIONS[2]; }
     function eventRef(path=""){ return ref(db, `photoEvents/${EVENT_ID}${path}`); }
-    function isHost(data){ return data?.hostId && state.user?.id && data.hostId === state.user.id; }
-
-    function sortQueue(queueObj){
-      return Object.values(queueObj || {}).sort((a,b)=>{
-        const aRank = a.active ? 0 : 1;
-        const bRank = b.active ? 0 : 1;
-        if(aRank !== bRank) return aRank - bRank;
-        const av = typeof a.voteCount === "number" ? -a.voteCount : 0;
-        const bv = typeof b.voteCount === "number" ? -b.voteCount : 0;
-        if(av !== bv) return av - bv;
-        return (a.createdAt || 0) - (b.createdAt || 0);
-      });
-    }
-
-    function currentPhoto(data){
-      const queue = sortQueue(data?.queue || {});
-      return queue.find(v=>v.active) || queue.find(v=>!v.finished) || null;
-    }
-
-    function myCurrentQueueId(data){
-      const queue = Object.values(data?.queue || {});
-      const item = queue.find(v=>v.leaderId === state.user?.id && !v.finished);
-      return item?.id || null;
-    }
-
-    function formatRemain(ms){
-      const safe = Math.max(0, ms);
-      const m = Math.floor(safe / 60000);
-      const s = Math.floor((safe % 60000) / 1000);
-      return `${m}:${String(s).padStart(2, "0")}`;
-    }
+    function sortQueue(queueObj){ return Object.values(queueObj || {}).sort((a,b)=>{ const aRank=a.active?0:1, bRank=b.active?0:1; if(aRank!==bRank) return aRank-bRank; const av=typeof a.voteCount === 'number' ? -a.voteCount : 0; const bv=typeof b.voteCount === 'number' ? -b.voteCount : 0; if(av!==bv) return av-bv; return (a.createdAt||0)-(b.createdAt||0); }); }
+    function currentPhoto(data){ const map=data?.currentMap || 'bridge'; const queue=sortQueue(data?.queue || {}).filter(v=>!v.finished && v.map===map); return queue.find(v=>v.active) || queue[0] || null; }
+    function myCurrentQueueId(data){ const queue=Object.values(data?.queue || {}); const item=queue.find(v=>v.leaderId===state.user?.id && !v.finished); return item?.id || null; }
+    function formatRemain(ms){ const safe=Math.max(0,ms); const m=Math.floor(safe/60000); const s=Math.floor((safe%60000)/1000); return `${m}:${String(s).padStart(2,'0')}`; }
+    function isAdmin(){ return state.adminUnlocked; }
+    function nextMapId(current){ const idx=MAP_ORDER.indexOf(current); return MAP_ORDER[(idx+1) % MAP_ORDER.length]; }
+    function renderGoals(){ els.goalList.innerHTML=`<div class="goal-card"><div class="goal-title">#私の推しフォト を作成・投稿が今日の目標</div><div class="goal-sub">推しフォトのSNS投稿は任意です。SNSに載せる場合は、他の人の名前が見える・特定できる写り込みは配慮してね。心配な方は 名前やアバター変更も推奨。</div></div>`; }
 
     async function ensureSeed(){
-      const snap = await get(eventRef());
-      if(snap.exists()) return;
-      const now = Date.now();
-      await set(eventRef(), {
-        hostId: uid(),
-        currentFlow:"brainstorm",
-        currentMap:"bridge",
-        currentPhotoId:"seed_1",
-        phaseStartedAt: now,
-        phaseEndsAt: now + FLOW[0].durationMs,
-        queue:{
-          seed_1:{
-            id:"seed_1",
-            title:"歩道橋・集合写真",
-            map:"bridge",
-            type:"sample",
-            leaderId:"system",
-            leaderName:"SYSTEM",
-            active:true,
-            finished:false,
-            createdAt:now,
-            voteCount:0,
-            votedBy:{},
-            image:SAMPLE_PHOTOS[0].image,
-            template:{ camera:"目線", mood:"わちゃ", size:"4〜5", plusOne:"後ろで小さく入る" },
-            participants:{}
-          },
-          seed_2:{
-            id:"seed_2",
-            title:"3スポット・エモ並び",
-            map:"spots",
-            type:"sample",
-            leaderId:"system",
-            leaderName:"SYSTEM",
-            active:false,
-            finished:false,
-            createdAt:now + 1,
-            voteCount:0,
-            votedBy:{},
-            image:SAMPLE_PHOTOS[1].image,
-            template:{ camera:"低め", mood:"エモ", size:"2〜3", plusOne:"前に座る" },
-            participants:{}
-          }
-        },
-        people:{}
-      });
+      const snap=await get(eventRef()); if(snap.exists()) return;
+      const now=Date.now();
+      await set(eventRef(), { currentFlow:'brainstorm', currentMap:'bridge', currentPhotoId:'seed_1', phaseStartedAt:now, phaseEndsAt:0, queue:{ seed_1:{ id:'seed_1', title:'歩道橋・集合写真', map:'bridge', type:'sample', leaderId:'system', leaderName:'SYSTEM', active:true, finished:false, createdAt:now, voteCount:0, votedBy:{}, image:SAMPLE_PHOTOS[0].image, template:{ camera:'目線', mood:'わちゃ', size:'4〜5', plusOne:'後ろで小さく入る' }, participants:{} }, seed_2:{ id:'seed_2', title:'3スポット・エモ並び', map:'spots', type:'sample', leaderId:'system', leaderName:'SYSTEM', active:false, finished:false, createdAt:now+1, voteCount:0, votedBy:{}, image:SAMPLE_PHOTOS[1].image, template:{ camera:'低め', mood:'エモ', size:'2〜3', plusOne:'前に座る' }, participants:{} }, seed_3:{ id:'seed_3', title:'プール・俯瞰で広め', map:'pool', type:'sample', leaderId:'system', leaderName:'SYSTEM', active:false, finished:false, createdAt:now+2, voteCount:0, votedBy:{}, image:SAMPLE_PHOTOS[2].image, template:{ camera:'俯瞰', mood:'かっこよく', size:'何人でも', plusOne:'後ろで小さく入る' }, participants:{} } }, people:{} });
     }
 
-    async function ensureUser(){
-      const id = uid();
-      const user = { id, name: displayName() };
-      state.user = user;
-      state.myStatus = localStorage.getItem(`photo_event_status_${EVENT_ID}`) || "chill";
-      els.nameInput.value = user.name;
-      await update(eventRef(`/people/${id}`), {
-        name:user.name,
-        status:state.myStatus,
-        updatedAt:Date.now()
-      });
-    }
+    async function ensureUser(){ const id=uid(); const user={ id, name:displayName() }; state.user=user; state.myStatus=localStorage.getItem(`photo_event_status_${EVENT_ID}`)||'chill'; els.nameInput.value=user.name; await update(eventRef(`/people/${id}`), { name:user.name, status:state.myStatus, updatedAt:Date.now() }); }
 
     function renderFlow(data){
-      const current = data?.currentFlow || "brainstorm";
-      const index = FLOW.findIndex(v=>v.id === current);
-      els.flowLine.innerHTML = "";
-      FLOW.forEach((step, i)=>{
-        const item = node("div", "flow-step");
-        if(i < index) item.classList.add("done");
-        if(i === index) item.classList.add("active");
-        item.innerHTML = `
-          <div class="flow-mini">${esc(step.map)}</div>
-          <div class="flow-name">${esc(step.name)}</div>
-          <div class="flow-sub">${esc(step.time)}</div>
-        `;
-        els.flowLine.appendChild(item);
-      });
+      const current=data?.currentFlow || 'brainstorm';
+      const index=FLOW.findIndex(v=>v.id===current);
+      els.flowLine.innerHTML='';
+      FLOW.forEach((step,i)=>{ const item=node('div','flow-step'); if(i<index) item.classList.add('done'); if(i===index) item.classList.add('active'); item.innerHTML=`<div class="flow-mini">${esc(mapName(data?.currentMap || 'bridge'))}</div><div class="flow-name">${esc(step.name)}</div><div class="flow-sub">${esc(step.time)}</div>`; els.flowLine.appendChild(item); });
     }
 
     function renderCurrent(data){
-      const photo = currentPhoto(data);
-      const flow = flowInfo(data?.currentFlow || "brainstorm");
-      const title = photo?.title || flow.name;
-      const map = mapName(data?.currentMap || photo?.map || "bridge");
-      const participants = Object.keys(photo?.participants || {}).length;
-      const remain = (data?.phaseEndsAt || 0) - Date.now();
-      const hostText = isHost(data) ? "主催中" : (data?.hostId ? "参加中" : "未設定");
-
-      els.currentTitle.textContent = title;
-      els.currentMeta.innerHTML = [
-        `現状：${flow.name}`,
-        `マップ：${map}`,
-        `残り：${formatRemain(remain)}`,
-        `参加：${participants}人`,
-        `権限：${hostText}`
-      ].map(v=>`<span class="meta-pill">${esc(v)}</span>`).join("");
-
-      els.eventMini.textContent = `event=${EVENT_ID}`;
-
-      els.detailBody.innerHTML = photo ? `
-        <div class="photo-card current">
-          <div class="card-head">
-            <div>
-              <div class="card-title">${esc(photo.title)}</div>
-              <div class="card-sub">${esc(flow.name)} ・ ${esc(mapName(photo.map))}</div>
-            </div>
-            <div class="kind">${photo.type === 'sample' ? '選択' : 'オリジナル'}</div>
-          </div>
-          ${photo.image ? `<div class="thumb" style="height:180px;background-image:url('${esc(photo.image)}')"></div>` : ``}
-          <div class="chips">
-            <span class="chip">${esc(photo.template?.camera || '指定なし')}</span>
-            <span class="chip">${esc(photo.template?.mood || '指定なし')}</span>
-            <span class="chip">${esc(photo.template?.size || '指定なし')}</span>
-            <span class="chip">${esc(photo.template?.plusOne || '指定なし')}</span>
-          </div>
-          ${isHost(data) ? `<div class="actions"><button class="btn warn" id="hostNextBtn">次へ</button><button class="btn ok" id="hostFinishBtn">撮れた！！</button></div>` : ``}
-        </div>
-      ` : `<div class="empty">なし</div>`;
-
-      const nextBtn = document.getElementById("hostNextBtn");
-      const finishBtn = document.getElementById("hostFinishBtn");
-      if(nextBtn) nextBtn.onclick = () => hostAdvancePhase(false);
-      if(finishBtn && photo) finishBtn.onclick = () => finishCurrent(photo.id);
+      const photo=currentPhoto(data); const flow=data?.currentFlow==='break' ? BREAK_FLOW : flowInfo(data?.currentFlow || 'brainstorm'); const title=photo?.title || flow.name; const map=mapName(data?.currentMap || 'bridge'); const participants=Object.keys(photo?.participants || {}).length; const remain=(data?.phaseEndsAt || 0)-Date.now();
+      els.currentTitle.textContent=title;
+      els.currentMeta.innerHTML=[`現状：${flow.name}`,`マップ：${map}`,`残り：${data?.currentFlow==='break' ? formatRemain(remain) : '手動'}`,`参加：${participants}人`,`運営：${isAdmin() ? 'ON' : 'OFF'}`].map(v=>`<span class="meta-pill">${esc(v)}</span>`).join('');
+      els.eventMini.textContent=`event=${EVENT_ID}`;
+      els.detailBody.innerHTML=photo ? `<div class="photo-card current"><div class="card-head"><div><div class="card-title">${esc(photo.title)}</div><div class="card-sub">${esc(flow.name)} ・ ${esc(mapName(photo.map))}</div></div><div class="kind">${photo.type === 'sample' ? '選択' : 'オリジナル'}</div></div>${photo.image ? `<div class="thumb" style="height:180px;background-image:url('${esc(photo.image)}')"></div>` : ``}<div class="chips"><span class="chip">${esc(photo.template?.camera || '指定なし')}</span><span class="chip">${esc(photo.template?.mood || '指定なし')}</span><span class="chip">${esc(photo.template?.size || '指定なし')}</span><span class="chip">${esc(photo.template?.plusOne || '指定なし')}</span></div></div>` : `<div class="empty">なし</div>`;
     }
 
     function renderQueue(data){
-      const queue = sortQueue(data?.queue || {}).filter(v=>!v.finished);
-      els.queueList.innerHTML = "";
-      if(!queue.length){
-        els.queueList.innerHTML = `<div class="empty">まだありません</div>`;
-      } else {
-        queue.forEach((item, index)=>{
-          const joined = !!item.participants?.[state.user.id];
-          const mine = item.leaderId === state.user.id;
-          const canManage = isHost(data);
-          const card = node("div", `photo-card ${item.active ? 'current' : ''}`);
-          card.innerHTML = `
-            <div class="card-head">
-              <div>
-                <div class="card-title">${esc(item.title)}</div>
-                <div class="card-sub">${index === 0 ? '今やってる' : '次のフォト'} ・ ${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')}</div>
-              </div>
-              <div class="kind">${item.type === 'sample' ? '選択' : 'オリジナル'}</div>
-            </div>
-            ${item.image ? `<div class="thumb" style="background-image:url('${esc(item.image)}')"></div>` : ``}
-            <div class="chips">
-              <span class="chip">${esc(item.template?.camera || '指定なし')}</span>
-              <span class="chip">${esc(item.template?.mood || '指定なし')}</span>
-              <span class="chip">${esc(item.template?.size || '指定なし')}</span>
-              <span class="chip">❤️ ${Number(item.voteCount || 0)}</span>
-            </div>
-            <div class="actions">
-              <button class="btn ${joined ? '' : 'primary'}" data-join="${item.id}">${joined ? '参加中' : '参加する'}</button>
-              ${mine && !item.active ? `<button class="btn danger" data-cancel="${item.id}">取り消す</button>` : ``}
-              ${canManage && item.active ? `<button class="btn ok" data-done="${item.id}">撮れた！！</button>` : ``}
-            </div>
-          `;
-          els.queueList.appendChild(card);
-        });
+      const map=data?.currentMap || 'bridge'; const queue=sortQueue(data?.queue || {}).filter(v=>!v.finished && v.map===map); els.queueList.innerHTML='';
+      if(!queue.length){ els.queueList.innerHTML=`<div class="empty">まだありません</div>`; } else {
+        queue.forEach((item,index)=>{ const joined=!!item.participants?.[state.user.id]; const mine=item.leaderId===state.user.id; const card=node('div',`photo-card ${item.active ? 'current':''}`); card.innerHTML=`<div class="card-head"><div><div class="card-title">${esc(item.title)}</div><div class="card-sub">${index===0 ? '今やってる' : '次のフォト'} ・ ${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')}</div></div><div class="kind">${item.type === 'sample' ? '選択' : 'オリジナル'}</div></div>${item.image ? `<div class="thumb" style="background-image:url('${esc(item.image)}')"></div>` : ``}<div class="chips"><span class="chip">${esc(item.template?.camera || '指定なし')}</span><span class="chip">${esc(item.template?.mood || '指定なし')}</span><span class="chip">${esc(item.template?.size || '指定なし')}</span><span class="chip">❤️ ${Number(item.voteCount || 0)}</span></div><div class="actions"><button class="btn ${joined ? '' : 'primary'}" data-join="${item.id}">${joined ? '参加中' : '参加する'}</button>${mine && !item.active ? `<button class="btn danger" data-cancel="${item.id}">取り消す</button>` : ``}${isAdmin() && item.active ? `<button class="btn ok" data-done="${item.id}">撮れた！！</button>` : ``}</div>`; els.queueList.appendChild(card); });
       }
-
-      const next = queue.filter(v=>!v.active).slice(0,3);
-      els.nextList.innerHTML = next.length ? "" : `<div class="empty">なし</div>`;
-      next.forEach(item=>{
-        const card = node("div", "photo-card");
-        card.innerHTML = `
-          <div class="card-title">${esc(item.title)}</div>
-          <div class="card-sub">${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')} ・ ${Number(item.voteCount || 0)}票</div>
-        `;
-        els.nextList.appendChild(card);
-      });
+      const next=queue.filter(v=>!v.active).slice(0,3); els.nextList.innerHTML=next.length ? '' : `<div class="empty">なし</div>`; next.forEach(item=>{ const card=node('div','photo-card'); card.innerHTML=`<div class="card-title">${esc(item.title)}</div><div class="card-sub">${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')} ・ ${Number(item.voteCount || 0)}票</div>`; els.nextList.appendChild(card); });
     }
 
     function renderVote(data){
-      const flow = data?.currentFlow || "brainstorm";
-      const queue = sortQueue(data?.queue || {}).filter(v=>!v.finished && !v.active);
-      els.voteList.innerHTML = "";
-      if(flow !== "vote"){
-        els.voteList.innerHTML = `<div class="empty">投票タイムになると表示</div>`;
-        return;
-      }
-      if(!queue.length){
-        els.voteList.innerHTML = `<div class="empty">候補がありません</div>`;
-        return;
-      }
-      queue.forEach(item=>{
-        const voted = !!item.votedBy?.[state.user.id];
-        const card = node("div", "photo-card vote-card");
-        card.innerHTML = `
-          <div class="card-head">
-            <div>
-              <div class="card-title">${esc(item.title)}</div>
-              <div class="card-sub">${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')}</div>
-            </div>
-            <div class="vote-count">${Number(item.voteCount || 0)}</div>
-          </div>
-          ${item.image ? `<div class="thumb" style="background-image:url('${esc(item.image)}')"></div>` : ``}
-          <div class="actions">
-            <button class="btn pink" data-vote="${item.id}">${voted ? '投票済み' : '投票する'}</button>
-          </div>
-        `;
-        els.voteList.appendChild(card);
-      });
+      const flow=data?.currentFlow || 'brainstorm'; const map=data?.currentMap || 'bridge'; const queue=sortQueue(data?.queue || {}).filter(v=>!v.finished && !v.active && v.map===map); els.voteList.innerHTML='';
+      if(flow !== 'vote'){ els.voteList.innerHTML=`<div class="empty">投票タイムになると表示</div>`; return; }
+      if(!queue.length){ els.voteList.innerHTML=`<div class="empty">候補がありません</div>`; return; }
+      queue.forEach(item=>{ const voted=!!item.votedBy?.[state.user.id]; const card=node('div','photo-card vote-card'); card.innerHTML=`<div class="card-head"><div><div class="card-title">${esc(item.title)}</div><div class="card-sub">${esc(mapName(item.map))} ・ ${esc(item.leaderName || 'Guest')}</div></div><div class="vote-count">${Number(item.voteCount || 0)}</div></div>${item.image ? `<div class="thumb" style="background-image:url('${esc(item.image)}')"></div>` : ``}<div class="actions"><button class="btn pink" data-vote="${item.id}">${voted ? '投票済み' : '投票する'}</button></div>`; els.voteList.appendChild(card); });
     }
 
-    function renderGoals(){
-      els.goalList.innerHTML = `
-        <div class="goal-card">
-          <div class="goal-title">#私の推しフォト を作成・投稿が今日の目標</div>
-          <div class="goal-sub">推しフォトのSNS投稿は任意です。SNSに載せる場合は、他の人の名前が見える・特定できる写り込みは配慮してね。心配な方は 名前やアバター変更も推奨。</div>
-        </div>
-      `;
-    }
+    function renderPeople(data){ const people=Object.entries(data?.people || {}).map(([id,value])=>({ id, ...value })); people.sort((a,b)=>(a.name||'').localeCompare(b.name||'')); els.peopleList.innerHTML=people.length ? '' : `<div class="empty">まだいません</div>`; people.forEach(person=>{ const info=statusInfo(person.status); const item=node('div','person'); item.innerHTML=`<div class="person-icon">${info.icon}</div><div><div class="person-name">${esc(person.name || 'Guest')}${person.id===state.user?.id ? ' ・you' : ''}</div><div class="person-sub">${esc(info.label)}</div></div>`; els.peopleList.appendChild(item); }); }
 
-    function renderPeople(data){
-      const people = Object.entries(data?.people || {}).map(([id, value])=>({ id, ...value }));
-      people.sort((a,b)=>(a.name || "").localeCompare(b.name || ""));
-      els.peopleList.innerHTML = people.length ? "" : `<div class="empty">まだいません</div>`;
-      people.forEach(person=>{
-        const info = statusInfo(person.status);
-        const item = node("div", "person");
-        item.innerHTML = `
-          <div class="person-icon">${info.icon}</div>
-          <div>
-            <div class="person-name">${esc(person.name || 'Guest')}${person.id === data?.hostId ? ' 👑' : ''}</div>
-            <div class="person-sub">${esc(info.label)}</div>
-          </div>
-        `;
-        els.peopleList.appendChild(item);
-      });
-    }
+    function buildSamples(){ els.sampleList.innerHTML=''; SAMPLE_PHOTOS.forEach((sample,i)=>{ const item=node('div','sample'); item.innerHTML=`<div class="thumb" style="background-image:url('${esc(sample.image)}')"></div><div><div class="sample-title">${esc(sample.title)}</div><div class="sample-sub">${esc(mapName(sample.map))} ・ ${esc(sample.camera)} ・ ${esc(sample.mood)}</div></div><button class="btn primary" data-sample="${i}">入れる</button>`; els.sampleList.appendChild(item); }); }
+    function buildMapOptions(){ els.mapSelect.innerHTML = MAPS.map(v=>`<option value="${v.id}">${esc(v.name)}</option>`).join(''); }
+    function buildStatusChips(){ els.statusChips.innerHTML=''; STATUS_OPTIONS.forEach(opt=>{ const btn=node('button',`chip-btn ${state.myStatus===opt.id ? 'on':''}`); btn.type='button'; btn.dataset.status=opt.id; btn.textContent=`${opt.icon} ${opt.label}`; els.statusChips.appendChild(btn); }); }
+    function buildTemplateChips(){ Object.entries(TEMPLATES).forEach(([group,list])=>{ const root=qs(`[data-group="${group}"]`); root.innerHTML=''; list.forEach(value=>{ const btn=node('button',`chip-btn ${state.pick[group]===value ? 'on':''}`); btn.type='button'; btn.dataset.group=group; btn.dataset.value=value; btn.textContent=value; root.appendChild(btn); }); }); }
+    function setMode(mode){ state.mode=mode; els.typeSample.classList.toggle('on', mode==='sample'); els.typeOriginal.classList.toggle('on', mode==='original'); els.sampleArea.style.display=mode==='sample' ? 'block':'none'; els.originalArea.style.display=mode==='original' ? 'block':'none'; }
 
-    function buildSamples(){
-      els.sampleList.innerHTML = "";
-      SAMPLE_PHOTOS.forEach((sample, i)=>{
-        const item = node("div", "sample");
-        item.innerHTML = `
-          <div class="thumb" style="background-image:url('${esc(sample.image)}')"></div>
-          <div>
-            <div class="sample-title">${esc(sample.title)}</div>
-            <div class="sample-sub">${esc(mapName(sample.map))} ・ ${esc(sample.camera)} ・ ${esc(sample.mood)}</div>
-          </div>
-          <button class="btn primary" data-sample="${i}">入れる</button>
-        `;
-        els.sampleList.appendChild(item);
-      });
-    }
+    async function joinPhoto(photoId){ await set(eventRef(`/queue/${photoId}/participants/${state.user.id}`), { name:state.user.name, at:Date.now() }); }
+    async function votePhoto(photoId){ if((state.eventData?.currentFlow || '') !== 'vote') return; await runTransaction(eventRef(`/queue/${photoId}`), item => { if(!item || item.finished || item.active) return item; item.votedBy ||= {}; item.voteCount ||= 0; if(item.votedBy[state.user.id]) return item; item.votedBy[state.user.id]=true; item.voteCount += 1; return item; }); }
+    async function cancelOwnPhoto(photoId){ const snap=await get(eventRef(`/queue/${photoId}`)); const data=snap.val(); if(!data || data.leaderId!==state.user.id || data.active) return; await remove(eventRef(`/queue/${photoId}`)); }
 
-    function buildMapOptions(){
-      els.mapSelect.innerHTML = MAPS.filter(v=>v.id !== 'break').map(v=>`<option value="${v.id}">${esc(v.name)}</option>`).join("");
-    }
-
-    function buildStatusChips(){
-      els.statusChips.innerHTML = "";
-      STATUS_OPTIONS.forEach(opt=>{
-        const btn = node("button", `chip-btn ${state.myStatus === opt.id ? 'on' : ''}`);
-        btn.type = "button";
-        btn.dataset.status = opt.id;
-        btn.textContent = `${opt.icon} ${opt.label}`;
-        els.statusChips.appendChild(btn);
-      });
-    }
-
-    function buildTemplateChips(){
-      Object.entries(TEMPLATES).forEach(([group, list])=>{
-        const root = qs(`[data-group="${group}"]`);
-        root.innerHTML = "";
-        list.forEach(value=>{
-          const btn = node("button", `chip-btn ${state.pick[group] === value ? 'on' : ''}`);
-          btn.type = "button";
-          btn.dataset.group = group;
-          btn.dataset.value = value;
-          btn.textContent = value;
-          root.appendChild(btn);
-        });
-      });
-    }
-
-    function setMode(mode){
-      state.mode = mode;
-      els.typeSample.classList.toggle("on", mode === "sample");
-      els.typeOriginal.classList.toggle("on", mode === "original");
-      els.sampleArea.style.display = mode === "sample" ? "block" : "none";
-      els.originalArea.style.display = mode === "original" ? "block" : "none";
-    }
-
-    async function joinPhoto(photoId){
-      await set(eventRef(`/queue/${photoId}/participants/${state.user.id}`), {
-        name:state.user.name,
-        at:Date.now()
-      });
-    }
-
-    async function votePhoto(photoId){
-      const flow = state.eventData?.currentFlow;
-      if(flow !== "vote") return;
-      const target = eventRef(`/queue/${photoId}`);
-      await runTransaction(target, item => {
-        if(!item || item.finished || item.active) return item;
-        item.votedBy ||= {};
-        item.voteCount ||= 0;
-        if(item.votedBy[state.user.id]) return item;
-        item.votedBy[state.user.id] = true;
-        item.voteCount += 1;
-        return item;
-      });
-    }
-
-    async function cancelOwnPhoto(photoId){
-      const snap = await get(eventRef(`/queue/${photoId}`));
-      const data = snap.val();
-      if(!data || data.leaderId !== state.user.id || data.active) return;
-      await remove(eventRef(`/queue/${photoId}`));
-    }
-
-    function nextFlowId(currentFlow){
-      const order = ["brainstorm","vote","shoot","break"];
-      const idx = order.indexOf(currentFlow || "brainstorm");
-      return order[(idx + 1) % order.length];
-    }
-
-    function nextMapForFlow(flowId, chosenPhoto){
-      if(flowId === "brainstorm") return "bridge";
-      if(flowId === "vote") return "spots";
-      if(flowId === "shoot") return chosenPhoto?.map || "pool";
-      return "break";
-    }
-
-    async function pickTopVotedPhoto(){
-      const queue = sortQueue(state.eventData?.queue || {}).filter(v=>!v.finished && !v.active);
-      return queue[0] || null;
-    }
-
-    async function hostAdvancePhase(markCurrentFinished){
-      if(!isHost(state.eventData)) return;
-      const current = currentPhoto(state.eventData);
-      const currentFlow = state.eventData?.currentFlow || "brainstorm";
-      const nextFlow = nextFlowId(currentFlow);
-      const now = Date.now();
-      const updates = {};
-
-      if(markCurrentFinished && current){
-        updates[`photoEvents/${EVENT_ID}/queue/${current.id}/active`] = false;
-        updates[`photoEvents/${EVENT_ID}/queue/${current.id}/finished`] = true;
-      }
-
-      let nextPhoto = current;
-      if(nextFlow === "shoot") {
-        const top = await pickTopVotedPhoto();
-        if(top){
-          nextPhoto = top;
-          updates[`photoEvents/${EVENT_ID}/queue/${top.id}/active`] = true;
-          updates[`photoEvents/${EVENT_ID}/currentPhotoId`] = top.id;
-        }
-      }
-
-      updates[`photoEvents/${EVENT_ID}/currentFlow`] = nextFlow;
-      updates[`photoEvents/${EVENT_ID}/currentMap`] = nextMapForFlow(nextFlow, nextPhoto);
-      updates[`photoEvents/${EVENT_ID}/phaseStartedAt`] = now;
-      updates[`photoEvents/${EVENT_ID}/phaseEndsAt`] = now + (flowInfo(nextFlow).durationMs || 300000);
-      await update(ref(db), updates);
-    }
+    async function setPhase(phaseId){ if(!isAdmin()) return; const updates={}; updates[`photoEvents/${EVENT_ID}/currentFlow`]=phaseId; updates[`photoEvents/${EVENT_ID}/phaseStartedAt`]=Date.now(); updates[`photoEvents/${EVENT_ID}/phaseEndsAt`]=phaseId==='break' ? Date.now()+BREAK_FLOW.durationMs : 0; await update(ref(db), updates); }
+    async function setMap(mapId){ if(!isAdmin()) return; const updates={}; updates[`photoEvents/${EVENT_ID}/currentMap`]=mapId; updates[`photoEvents/${EVENT_ID}/currentFlow`]='brainstorm'; updates[`photoEvents/${EVENT_ID}/phaseStartedAt`]=Date.now(); updates[`photoEvents/${EVENT_ID}/phaseEndsAt`]=0; const current=currentPhoto({ ...(state.eventData||{}), currentMap:mapId }); if(current){ updates[`photoEvents/${EVENT_ID}/currentPhotoId`]=current.id; Object.keys(state.eventData?.queue || {}).forEach(id=>{ updates[`photoEvents/${EVENT_ID}/queue/${id}/active`]=false; }); updates[`photoEvents/${EVENT_ID}/queue/${current.id}/active`]=true; } await update(ref(db), updates); }
+    async function nextCycle(){ if(!isAdmin()) return; await setMap(nextMapId(state.eventData?.currentMap || 'bridge')); }
+    async function setBreak(){ if(!isAdmin()) return; await setPhase('break'); }
 
     async function finishCurrent(photoId){
-      if(!isHost(state.eventData)) return;
-      const current = state.eventData?.queue?.[photoId];
-      if(!current) return;
-      const updates = {};
-      updates[`photoEvents/${EVENT_ID}/queue/${photoId}/active`] = false;
-      updates[`photoEvents/${EVENT_ID}/queue/${photoId}/finished`] = true;
-
-      const remaining = sortQueue(state.eventData?.queue || {}).filter(v=>!v.finished && v.id !== photoId);
-      const next = remaining[0] || null;
-      if(next){
-        updates[`photoEvents/${EVENT_ID}/queue/${next.id}/active`] = true;
-        updates[`photoEvents/${EVENT_ID}/currentPhotoId`] = next.id;
-        updates[`photoEvents/${EVENT_ID}/currentMap`] = next.map;
-      }
-
-      const now = Date.now();
-      updates[`photoEvents/${EVENT_ID}/currentFlow`] = "break";
-      updates[`photoEvents/${EVENT_ID}/phaseStartedAt`] = now;
-      updates[`photoEvents/${EVENT_ID}/phaseEndsAt`] = now + flowInfo("break").durationMs;
+      if(!isAdmin()) return;
+      const current=state.eventData?.queue?.[photoId]; if(!current) return;
+      const updates={}; updates[`photoEvents/${EVENT_ID}/queue/${photoId}/active`]=false; updates[`photoEvents/${EVENT_ID}/queue/${photoId}/finished`]=true; updates[`photoEvents/${EVENT_ID}/currentFlow`]='break'; updates[`photoEvents/${EVENT_ID}/phaseStartedAt`]=Date.now(); updates[`photoEvents/${EVENT_ID}/phaseEndsAt`]=Date.now()+BREAK_FLOW.durationMs;
+      const remaining=sortQueue(state.eventData?.queue || {}).filter(v=>!v.finished && v.id!==photoId && v.map===(state.eventData?.currentMap || 'bridge')); const next=remaining[0] || null; if(next){ updates[`photoEvents/${EVENT_ID}/queue/${next.id}/active`]=true; updates[`photoEvents/${EVENT_ID}/currentPhotoId`]=next.id; }
       await update(ref(db), updates);
     }
 
     async function autoAdvanceIfNeeded(){
-      const data = state.eventData;
-      if(!data || !isHost(data)) return;
-      const end = data.phaseEndsAt || 0;
-      if(Date.now() < end) return;
-      const flow = data.currentFlow || "brainstorm";
-      if(flow === "break") {
-        await hostAdvancePhase(false);
-        return;
-      }
-      if(flow === "vote") {
-        await hostAdvancePhase(false);
-        return;
-      }
+      const data=state.eventData; if(!data || !isAdmin()) return; if(data.currentFlow !== 'break') return; const end=data.phaseEndsAt || 0; if(Date.now() < end) return; await nextCycle();
     }
 
-    async function addSample(index){
-      const sample = SAMPLE_PHOTOS[index];
-      if(!sample) return;
-      if(myCurrentQueueId(state.eventData)) return;
-
-      const newRef = push(eventRef(`/queue`));
-      await set(newRef, {
-        id:newRef.key,
-        title:sample.title,
-        map:sample.map,
-        type:"sample",
-        leaderId:state.user.id,
-        leaderName:state.user.name,
-        active:false,
-        finished:false,
-        participants:{},
-        createdAt:Date.now(),
-        createdAtServer:serverTimestamp(),
-        voteCount:0,
-        votedBy:{},
-        image:sample.image,
-        template:{
-          camera:sample.camera,
-          mood:sample.mood,
-          size:sample.size,
-          plusOne:sample.plusOne
-        }
-      });
-      closeModal(els.leaderModal);
-    }
-
-    async function addOriginal(){
-      const title = els.titleInput.value.trim();
-      if(!title) return;
-      if(myCurrentQueueId(state.eventData)) return;
-
-      const detail = els.detailSelect.value === "yes";
-      const newRef = push(eventRef(`/queue`));
-      await set(newRef, {
-        id:newRef.key,
-        title,
-        map:els.mapSelect.value,
-        type:"original",
-        leaderId:state.user.id,
-        leaderName:state.user.name,
-        active:false,
-        finished:false,
-        participants:{},
-        createdAt:Date.now(),
-        createdAtServer:serverTimestamp(),
-        voteCount:0,
-        votedBy:{},
-        image:"",
-        template: detail ? { ...state.pick } : {}
-      });
-      els.titleInput.value = "";
-      closeModal(els.leaderModal);
-    }
-
-    async function saveName(){
-      const name = els.nameInput.value.trim();
-      if(!name) return;
-      localStorage.setItem(`photo_event_name_${EVENT_ID}`, name);
-      state.user.name = name;
-      await update(eventRef(`/people/${state.user.id}`), {
-        name,
-        updatedAt:Date.now()
-      });
-    }
-
-    async function saveStatus(){
-      localStorage.setItem(`photo_event_status_${EVENT_ID}`, state.myStatus);
-      await update(eventRef(`/people/${state.user.id}`), {
-        status:state.myStatus,
-        updatedAt:Date.now()
-      });
-      closeModal(els.statusModal);
-    }
+    async function addSample(index){ const sample=SAMPLE_PHOTOS[index]; if(!sample) return; if(myCurrentQueueId(state.eventData)) return; const newRef=push(eventRef('/queue')); await set(newRef, { id:newRef.key, title:sample.title, map:sample.map, type:'sample', leaderId:state.user.id, leaderName:state.user.name, active:false, finished:false, participants:{}, createdAt:Date.now(), createdAtServer:serverTimestamp(), voteCount:0, votedBy:{}, image:sample.image, template:{ camera:sample.camera, mood:sample.mood, size:sample.size, plusOne:sample.plusOne } }); closeModal(els.leaderModal); }
+    async function addOriginal(){ const title=els.titleInput.value.trim(); if(!title) return; if(myCurrentQueueId(state.eventData)) return; const detail=els.detailSelect.value==='yes'; const newRef=push(eventRef('/queue')); await set(newRef, { id:newRef.key, title, map:els.mapSelect.value, type:'original', leaderId:state.user.id, leaderName:state.user.name, active:false, finished:false, participants:{}, createdAt:Date.now(), createdAtServer:serverTimestamp(), voteCount:0, votedBy:{}, image:'', template: detail ? { ...state.pick } : {} }); els.titleInput.value=''; closeModal(els.leaderModal); }
+    async function saveName(){ const name=els.nameInput.value.trim(); if(!name) return; localStorage.setItem(`photo_event_name_${EVENT_ID}`, name); state.user.name=name; await update(eventRef(`/people/${state.user.id}`), { name, updatedAt:Date.now() }); }
+    async function saveStatus(){ localStorage.setItem(`photo_event_status_${EVENT_ID}`, state.myStatus); await update(eventRef(`/people/${state.user.id}`), { status:state.myStatus, updatedAt:Date.now() }); closeModal(els.statusModal); }
 
     function bindEvents(){
-      document.querySelectorAll("[data-close]").forEach(btn=>{
-        btn.addEventListener("click", ()=>closeModal(document.getElementById(btn.dataset.close)));
-      });
-      [els.detailModal, els.statusModal, els.leaderModal].forEach(modal=>{
-        modal.addEventListener("click", e=>{ if(e.target === modal) closeModal(modal); });
-      });
-
-      els.detailBtn.addEventListener("click", ()=>openModal(els.detailModal));
-      els.joinBtn.addEventListener("click", async ()=>{
-        const current = currentPhoto(state.eventData);
-        if(current) await joinPhoto(current.id);
-      });
-
-      els.statusFab.addEventListener("click", ()=>{
-        els.nameInput.value = state.user?.name || displayName();
-        buildStatusChips();
-        openModal(els.statusModal);
-      });
-      els.saveNameBtn.addEventListener("click", saveName);
-      els.saveStatusBtn.addEventListener("click", saveStatus);
-      els.statusChips.addEventListener("click", e=>{
-        const btn = e.target.closest("[data-status]");
-        if(!btn) return;
-        state.myStatus = btn.dataset.status;
-        buildStatusChips();
-      });
-
-      els.leaderFab.addEventListener("click", ()=>openModal(els.leaderModal));
-      els.typeSample.addEventListener("click", ()=>setMode("sample"));
-      els.typeOriginal.addEventListener("click", ()=>setMode("original"));
-      els.detailSelect.addEventListener("change", ()=>{
-        els.templateArea.style.display = els.detailSelect.value === "yes" ? "grid" : "none";
-      });
-      els.addOriginalBtn.addEventListener("click", addOriginal);
-
-      els.sampleList.addEventListener("click", e=>{
-        const btn = e.target.closest("[data-sample]");
-        if(!btn) return;
-        addSample(Number(btn.dataset.sample));
-      });
-      els.templateArea.addEventListener("click", e=>{
-        const btn = e.target.closest("[data-group]");
-        if(!btn) return;
-        state.pick[btn.dataset.group] = btn.dataset.value;
-        buildTemplateChips();
-      });
-      els.queueList.addEventListener("click", async e=>{
-        const join = e.target.closest("[data-join]");
-        if(join){ await joinPhoto(join.dataset.join); return; }
-        const done = e.target.closest("[data-done]");
-        if(done){ await finishCurrent(done.dataset.done); return; }
-        const cancel = e.target.closest("[data-cancel]");
-        if(cancel){ await cancelOwnPhoto(cancel.dataset.cancel); }
-      });
-      els.voteList.addEventListener("click", async e=>{
-        const vote = e.target.closest("[data-vote]");
-        if(vote){ await votePhoto(vote.dataset.vote); }
-      });
+      document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>closeModal(document.getElementById(btn.dataset.close))));
+      [els.detailModal, els.statusModal, els.leaderModal, els.adminModal].forEach(modal=>modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(modal); }));
+      els.detailBtn.addEventListener('click',()=>openModal(els.detailModal));
+      els.joinBtn.addEventListener('click', async ()=>{ const current=currentPhoto(state.eventData); if(current) await joinPhoto(current.id); });
+      els.statusFab.addEventListener('click',()=>{ els.nameInput.value=state.user?.name || displayName(); buildStatusChips(); openModal(els.statusModal); });
+      els.saveNameBtn.addEventListener('click', saveName); els.saveStatusBtn.addEventListener('click', saveStatus); els.statusChips.addEventListener('click', e=>{ const btn=e.target.closest('[data-status]'); if(!btn) return; state.myStatus=btn.dataset.status; buildStatusChips(); });
+      els.leaderFab.addEventListener('click',()=>openModal(els.leaderModal)); els.typeSample.addEventListener('click',()=>setMode('sample')); els.typeOriginal.addEventListener('click',()=>setMode('original')); els.detailSelect.addEventListener('change',()=>{ els.templateArea.style.display=els.detailSelect.value==='yes' ? 'grid':'none'; }); els.addOriginalBtn.addEventListener('click', addOriginal);
+      els.sampleList.addEventListener('click',e=>{ const btn=e.target.closest('[data-sample]'); if(btn) addSample(Number(btn.dataset.sample)); });
+      els.templateArea.addEventListener('click',e=>{ const btn=e.target.closest('[data-group]'); if(!btn) return; state.pick[btn.dataset.group]=btn.dataset.value; buildTemplateChips(); });
+      els.queueList.addEventListener('click', async e=>{ const join=e.target.closest('[data-join]'); if(join){ await joinPhoto(join.dataset.join); return; } const done=e.target.closest('[data-done]'); if(done){ await finishCurrent(done.dataset.done); return; } const cancel=e.target.closest('[data-cancel]'); if(cancel){ await cancelOwnPhoto(cancel.dataset.cancel); } });
+      els.voteList.addEventListener('click', async e=>{ const vote=e.target.closest('[data-vote]'); if(vote) await votePhoto(vote.dataset.vote); });
+      els.adminDot.addEventListener('click', ()=>openModal(els.adminModal));
+      els.unlockAdminBtn.addEventListener('click', ()=>{ if(els.adminPassInput.value === ADMIN_PASSWORD){ state.adminUnlocked = true; els.adminBody.style.display='block'; els.adminPassInput.value=''; renderCurrent(state.eventData || {}); } });
+      els.adminBody.addEventListener('click', async e=>{ const phase=e.target.closest('[data-admin-phase]'); if(phase){ await setPhase(phase.dataset.adminPhase); return; } const map=e.target.closest('[data-admin-map]'); if(map){ await setMap(map.dataset.adminMap); } });
+      els.adminNextCycleBtn.addEventListener('click', nextCycle);
+      els.adminBreakBtn.addEventListener('click', setBreak);
     }
 
     async function boot(){
-      await ensureSeed();
-      await ensureUser();
-      buildSamples();
-      buildMapOptions();
-      buildStatusChips();
-      buildTemplateChips();
-      renderGoals();
-      setMode("sample");
-      bindEvents();
-
-      onValue(eventRef(), snap=>{
-        const data = snap.val() || {};
-        state.eventData = data;
-        renderFlow(data);
-        renderCurrent(data);
-        renderQueue(data);
-        renderVote(data);
-        renderPeople(data);
-      });
-
-      if(state.timerInterval) clearInterval(state.timerInterval);
-      state.timerInterval = setInterval(()=>{
-        if(state.eventData) renderCurrent(state.eventData);
-      }, 1000);
-
-      if(state.hostInterval) clearInterval(state.hostInterval);
-      state.hostInterval = setInterval(()=>{
-        autoAdvanceIfNeeded();
-      }, 3000);
+      await ensureSeed(); await ensureUser(); buildSamples(); buildMapOptions(); buildStatusChips(); buildTemplateChips(); renderGoals(); setMode('sample'); bindEvents();
+      onValue(eventRef(), snap=>{ const data=snap.val() || {}; state.eventData=data; renderFlow(data); renderCurrent(data); renderQueue(data); renderVote(data); renderPeople(data); });
+      if(state.timerInterval) clearInterval(state.timerInterval); state.timerInterval=setInterval(()=>{ if(state.eventData){ renderCurrent(state.eventData); autoAdvanceIfNeeded(); } }, 1000);
     }
 
     boot();
